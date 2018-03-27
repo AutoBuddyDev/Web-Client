@@ -3,14 +3,11 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './modal-login/signup/signup.component';
 import { ModalLandingComponent } from './modal-landing/modal-landing.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     ModalLandingComponent
   ],
   imports: [
