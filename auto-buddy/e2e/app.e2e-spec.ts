@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('auto-code App', () => {
+describe('auto-buddy App', () => {
   let page: AppPage;
 
   beforeEach(() => {
