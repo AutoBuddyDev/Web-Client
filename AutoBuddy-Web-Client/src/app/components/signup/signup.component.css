@@ -1,0 +1,25 @@
+.signup-aligner {
+  height: 85vh;
+}
+.signup-aligner-item {
+  min-height: 30%;
+  width: 30%;
+}
+
+.signup-card {
+  background: #fafafa;
+}
+
+.signup-card-body {
+  padding-bottom:
+}
+
+.submit-signup-btn {
+  background: #44AF69;
+  color: #FFFFFF;
+}
+
+.submit-signup-btn:hover {
+  background: #2C7043;
+  color: #FFFFFF;
+}
