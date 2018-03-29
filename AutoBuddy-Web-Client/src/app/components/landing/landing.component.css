@@ -1,4 +1,4 @@
-.red-bg {
+/* .red-bg {
   background-color: red;
 }
 
@@ -8,8 +8,48 @@
 
 .pink-bg {
   background-color: pink;
+} */
+
+/* .sign-up-card {
+  height:80%;
+  max-width: 100%;
+} */
+
+/* .login-btn {
+  background: transparent;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+}
+
+.login-btn:hover {
+  background: #FFFFFF;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+} */
+
+.signup-btn {
+  background: #44AF69;
+  color: #FFFFFF;
+  max-width: 50%;
+}
+
+.signup-btn:hover {
+  background: #2C7043;
+  color: #FFFFFF;
 }
 
 .landing-row-main {
   height: 85vh;
+}
+
+.ab-yellow-text {
+  color: #FAB840;
+}
+
+.ab-green-text {
+  color: #44AF69
+}
+
+.landing-h1 {
+  font-size: 3.5rem;
 }

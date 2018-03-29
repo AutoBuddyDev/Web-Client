@@ -1,25 +1,25 @@
-.login-aligner {
+.signup-aligner {
   height: 85vh;
 }
-.login-aligner-item {
+.signup-aligner-item {
   min-height: 30%;
   width: 30%;
 }
 
-.login-card {
+.signup-card {
   background: #fafafa;
 }
 
-.login-card-body {
+.signup-card-body {
   padding-bottom:
 }
 
-.submit-login-btn {
+.submit-signup-btn {
   background: #44AF69;
   color: #FFFFFF;
 }
 
-.submit-login-btn:hover {
+.submit-signup-btn:hover {
   background: #2C7043;
   color: #FFFFFF;
 }
