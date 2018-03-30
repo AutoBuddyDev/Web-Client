@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   public email: string;
   public password1: string;
   public password2: string;
-  public accounttype: number;
+  public accounttype: string;
 
   ngOnInit() {
   }

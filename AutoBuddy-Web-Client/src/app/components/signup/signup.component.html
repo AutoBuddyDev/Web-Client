@@ -14,7 +14,8 @@
             <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password" name="password2">
           </div>
           <div class="form-group">
-            <select [(ngModel)]="accounttype" class="form-control" id="exampleFormControlSelect1" name="accounttype">
+            <select ng-init="accounttype = hi" [(ngModel)]="accounttype"  class="form-control" id="exampleFormControlSelect1" name="accounttype">
+              <option value="-1" selected>Choose your account type</option>
               <option value="0">Consumer</option>
               <option value="1">Garage</option>
             </select>
