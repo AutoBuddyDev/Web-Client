@@ -1,51 +1,121 @@
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-  Sign Up
-</button>
+    Sign Up
+  </button>
 
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div id="cd-signup"> <!-- sign up form -->
-            <form class="cd-form">
-              <p class="fieldset">
-                <label class="image-replace cd-username" for="signup-username">Username</label>
-                <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div id="cd-signup"> <!-- sign up form -->
+              <form class="cd-form">
+                <p class="fieldset">
+                  <label class="image-replace cd-username" for="signup-username">Username</label>
+                  <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+                  <span class="cd-error-message">Error message here!</span>
+                </p>
 
-              <p class="fieldset">
-                <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
+                <p class="fieldset">
+                  <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                  <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                  <span class="cd-error-message">Error message here!</span>
+                </p>
 
-              <p class="fieldset">
-                <label class="image-replace cd-password" for="signup-password">Password</label>
-                <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-                <a href="#0" class="hide-password">Hide</a>
-                <span class="cd-error-message">Error message here!</span>
-              </p>
+                <p class="fieldset">
+                  <label class="image-replace cd-password" for="signup-password">Password</label>
+                  <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+                  <a href="#0" class="hide-password">Hide</a>
+                  <span class="cd-error-message">Error message here!</span>
+                </p>
 
-              <p class="fieldset">
-                <input type="checkbox" id="accept-terms">
-                <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-              </p>
+                <p class="fieldset">
+                  <input type="checkbox" id="accept-terms">
+                  <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+                </p>
 
-              <p class="fieldset">
-                <input class="full-width has-padding" type="submit" value="Create account">
-              </p>
-            </form>
+                <p class="fieldset">
+                  <input class="full-width has-padding" type="submit" value="Create account">
+                </p>
+              </form>
 
-            <!-- <a href="#0" class="cd-close-form">Close</a> -->
-          </div> <!-- cd-signup -->
+              <!-- <a href="#0" class="cd-close-form">Close</a> -->
+            </div> <!-- cd-signup -->
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong2">
+      Log In
+    </button>
+
+    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div id="cd-login"> <!-- log in form -->
+                  <form class="cd-form">
+                    <p class="fieldset">
+                      <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                      <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                      <span class="cd-error-message">Error message here!</span>
+                    </p>
+
+                    <p class="fieldset">
+                      <label class="image-replace cd-password" for="signin-password">Password</label>
+                      <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+                      <a href="#0" class="hide-password">Hide</a>
+                      <span class="cd-error-message">Error message here!</span>
+                    </p>
+
+                    <p class="fieldset">
+                      <input type="checkbox" id="remember-me" checked>
+                      <label for="remember-me">Remember me</label>
+                    </p>
+
+                    <p class="fieldset">
+                      <input class="full-width" type="submit" value="Login">
+                    </p>
+                  </form>
+
+                  <!-- <a href="#0" class="cd-close-form">Close</a> -->
+                </div> <!-- cd-login -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong3">
+          Forgot Password
+        </button>
+
+        <div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Reset Password</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <app-forgot-password></app-forgot-password>
+                </div>
+              </div>
+            </div>
+          </div>
+
