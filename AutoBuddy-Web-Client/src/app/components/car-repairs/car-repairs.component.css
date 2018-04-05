@@ -1,0 +1,75 @@
+/* Repair Tabs */
+.col{
+  padding:0;
+}
+.nav-tabs .nav-item a{
+  border-radius: 20px 20px 0px 0px;
+
+}
+.nav-link{
+  filter:grayscale(70%)
+}
+.active{
+  filter:grayscale(0%);
+  border-color:none;
+}
+.nav-tabs .nav-item{
+  text-align: center;
+  display: inline-block;
+}
+
+.container{
+  padding:0;
+}
+#navigationTabs{
+  border-left:1px solid lightgrey;
+  border-bottom:1px solid lightgrey;
+  height:80vw;
+  padding:0;
+
+}
+/* repair table */
+
+.table{
+  background:lightgrey;
+  margin:0;
+}
+
+td{
+  border-top:1px solid lightgrey;
+  border-bottom:1px solid lightgrey;
+  border-collapse:collapse;
+  background:white;
+}
+td p, .downArrow{
+  margin: .5vw;
+}
+td p{
+  color: #717171;
+}
+.downArrow{
+  height: 12%;
+  float: right;
+
+}
+
+/* Note */
+#note{
+  border-top: 1px solid lightgrey;
+}
+.underline{
+  border-bottom: 1px solid black;
+}
+p{
+  font-family:Roboto;
+}
+
+/* Add Button */
+
+.btn{
+  position: absolute;
+  right: 30vw;
+  top:8vh;
+}
+
+

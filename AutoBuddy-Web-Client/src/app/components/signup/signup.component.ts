@@ -12,7 +12,8 @@ export class SignupComponent implements OnInit {
   public email: string;
   public password1: string;
   public password2: string;
-  public accounttype: number;
+  public accountType: string;
+
 
   ngOnInit() {
   }
@@ -21,7 +22,12 @@ export class SignupComponent implements OnInit {
     console.log(this.email);
     console.log(this.password1);
     console.log(this.password2);
-    console.log(this.accounttype);
+    console.log(this.accountType);
   }
 
+}
+
+export class accountType{
+  public name:string;
+  public id:number;
 }

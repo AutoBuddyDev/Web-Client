@@ -53,3 +53,16 @@
 .landing-h1 {
   font-size: 3.5rem;
 }
+
+.login-btn {
+  background: transparent;
+  border: 1px solid #151E3F;
+  min-width: 8vw;
+}
+
+.login-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  min-width: 8vw;
+}
+

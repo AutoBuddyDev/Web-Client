@@ -1,0 +1,52 @@
+<button class="btn btn-success" (click)="addRepair()">add</button>
+
+<div id="navigationTabs">
+  <ul class="nav nav-tabs">
+    <li class="nav-item col">
+      <a class="nav-link active bg-primary text-white" role="tab" data-toggle="tab" href="#inProgress">In Progress</a>
+    </li>
+    <li class="nav-item col">
+      <a class="nav-link bg-success text-white" role="tab" data-toggle="tab" href="#completed">Completed</a>
+    </li>
+  </ul>
+  <div class="clearfix"></div>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active tableContainer container" id="inProgress">
+      <table class="table">
+        <tbody >
+          <tr *ngFor="let repair of inProgressRepairs; let i =index"[attr.date-index]="i">
+            <td>
+              <p class = "d-inline-block">{{repair.title}}</p><img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+              <div id="note" *ngIf="noteVisible[i]" >
+                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
+                </span>
+                <p>{{repair.notes}}</p>
+              </div>
+            </td>
+            <div class="clearfix"></div>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane tableContainer container" id="completed">
+      <table class="table">
+
+        <tbody>
+            <tr *ngFor="let repair of completeRepairs;  let i =index"[attr.date-index]="i">
+                <td>
+                  <h3 class = "d-inline-block">{{repair.title}}</h3><img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+                  <div id="note" *ngIf="noteVisible[i]" >
+                    <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
+                    </span>
+                    <p>{{repair.notes}}</p>
+                  </div>
+                </td>
+                <div class="clearfix"></div>
+              </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
