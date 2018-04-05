@@ -5,14 +5,12 @@
       <h3> <span class="carType">Car:</span> {{car.make}} {{car.model}}</h3>
       <h3> <span class="checkedIn">Checked In:</span> {{car.checkedIn | date:'shortDate'}}</h3>
       <div class = "carContainer">
-        <img id="carPhoto"src = "assets/images/car.png">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]= "progress + '%'"  aria-valuemin="0" aria-valuemax="100">{{progress}}%</div>
-        </div>
+        <img id="carPhoto"src = "assets/images/car-outline.png">
+
       </div>
     </div>
 
-    <app-car-repairs [inProgressRepairs]="car.inProgressRepairs"[completeRepairs]="car.completedRepairs"class="carRepairs col"></app-car-repairs>
+    <app-car-repairs [car]="car" [inProgressRepairs]="car.inProgressRepairs"[completeRepairs]="car.completedRepairs"class="carRepairs col"></app-car-repairs>
 
   </div>
 </div>

@@ -1,5 +1,53 @@
-<button class="btn btn-success" (click)="addRepair()">add</button>
+<button type="button" class="btn btn-success text-dark" data-toggle="modal" data-target="#exampleModalLong">
+  Add Repair
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          <!-- Car name for the title -->
+          Buggie V4
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <!-- Title of repair -->
+          <div class="ml-1 row">
+              <input type="text" class="form-control d-block col-md-8" id="title"
+              name="title" [(ngModel)]="newRepair.title" value="repair.title" placeholder="Repair Title">
+          </div>
 
+          <!-- Parts -->
+          <div class="input-group ml-1 mb-2 mr-sm-2 mt-2 row">
+              <input type="text" class="form-control col-md-8" id="part"
+              name="part" [(ngModel)]="part" placeholder="Part ex: spring">
+            <div class="input-group-prepend">
+              <button type="submit" class="input-group-text btn btn-primary"
+              (click)="addPart()" >+</button>
+            </div>
+          </div>
+          <div *ngFor="let part of newRepair.parts">
+                <span class="form-control d-block p-2 part-color part text-dark col-md-8 ml-1">{{part}}</span>
+          </div>
+
+          <!-- Notes -->
+          <textarea placeholder="Enter Notes"class="form-control ml-1" id="repair_notes" rows="3" name="repair_notes" [(ngModel)]="newRepair.notes"></textarea>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn cancel text-white" data-dismiss="modal">Cancel</button>
+        <button data-dismiss="modal"type="button" class="btn text-white submit"
+        (click)="addRepair()"
+        >Submit Repair</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="navigationTabs">
   <ul class="nav nav-tabs">
     <li class="nav-item col">
@@ -16,7 +64,9 @@
         <tbody >
           <tr *ngFor="let repair of inProgressRepairs; let i =index"[attr.date-index]="i">
             <td>
-              <p class = "d-inline-block">{{repair.title}}</p><img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+              <p class = "d-inline-block">{{repair.title}}</p>
+              <input  (change)="markComplete(repair.id)" type= "checkbox"/>
+              <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
               <div id="note" *ngIf="noteVisible[i]" >
                 <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
                 </span>
@@ -33,17 +83,18 @@
       <table class="table">
 
         <tbody>
-            <tr *ngFor="let repair of completeRepairs;  let i =index"[attr.date-index]="i">
-                <td>
-                  <h3 class = "d-inline-block">{{repair.title}}</h3><img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
-                  <div id="note" *ngIf="noteVisible[i]" >
-                    <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
-                    </span>
-                    <p>{{repair.notes}}</p>
-                  </div>
-                </td>
-                <div class="clearfix"></div>
-              </tr>
+          <tr *ngFor="let repair of completeRepairs; let i =index"[attr.date-index]="i">
+            <td>
+              <p class = "d-inline-block">{{repair.title}}</p>
+              <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
+              <div id="note" *ngIf="noteVisible[i]" >
+                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
+                </span>
+                <p>{{repair.notes}}</p>
+              </div>
+            </td>
+            <div class="clearfix"></div>
+          </tr>
         </tbody>
 
       </table>

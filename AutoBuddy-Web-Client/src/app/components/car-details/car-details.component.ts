@@ -1,6 +1,10 @@
 import { Repair } from './../../domain/models/repair';
 import { Car } from './../../domain/models/car';
 import { Component, OnInit } from '@angular/core';
+import { GetProgressService } from '../../services/get-progress.service';
+import { HttpModule } from '@angular/http';
+
+
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
@@ -18,11 +22,16 @@ export class CarDetailsComponent implements OnInit {
     this.car.model="SLK-250";
     this.car.color="White";
     this.car.checkedIn=this.date;
-    this.car.completedRepairs=[
-    ];
+    this.car.completedRepairs=[];
     this.car.inProgressRepairs=[];
-    this.progress = 0;
+    this.car.repairs = this.car.completedRepairs.length+this.car.inProgressRepairs.length;
+    this.progress=0;
+    // this.getProgress();
 
   }
+
+  // getProgress(): void{
+  //   this.progress = this.progressService.getProgress();
+  // }
 
 }

@@ -10,4 +10,5 @@ export class Car {
   checkedIn?: Date;
   completedRepairs?: Repair[];
   inProgressRepairs?:Repair[];
+  repairs?: number;
 }
