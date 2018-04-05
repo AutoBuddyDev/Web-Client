@@ -1,5 +1,5 @@
 <main>
-  <nav class="navbar navbar-expand-md navbar-light bg-faded">
+  <nav *ngIf="!showNav" class="navbar navbar-expand-md navbar-light bg-faded">
     <a class="navbar-brand navy-text" [routerLink]="['/']">
       <img alt="Brand" src="./assets/images/ab-logo.png" height="35px" width="160px">
     </a>
@@ -10,7 +10,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <!-- <button class="btn login-btn" type="submit" [routerLink]="['/signup']">Signup</button> -->
-          <button class="btn login-btn" type="submit" [routerLink]="['/login']">Login</button>
+          <button class="btn login-btn" type="submit" [routerLink]="['/login']" *ngIf = "location == '/'">Login</button>
         </li>
       </ul>
     </header>

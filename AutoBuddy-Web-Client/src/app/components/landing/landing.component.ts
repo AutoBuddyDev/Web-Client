@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
+  showBg: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+    // this.AppComponent.showBg = false;
   }
 
 }

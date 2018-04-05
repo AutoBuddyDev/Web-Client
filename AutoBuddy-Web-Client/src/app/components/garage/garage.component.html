@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="text-align: center;">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="min-width: 30vw;">Add Car</button><br><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let car of cars">
+      <a class="no-decoration" routerLink="/garage/{{ car.id }}">
+      <div class="card garage-card">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.make }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
+          <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
+          <p class="card-text">Service Manager: {{ car.manager }}</p>
+          <p class="card-text">VIN: {{ car.vin }}</p>
+          <p class="card-text">Owner: {{ car.owner }}</p>
+          <p class="card-text" style="text-align: center;">Progress</p>
+          <div class="progress" style="margin-bottom:5%">
+            <div class="progress-bar" role="progressbar" [style.width]="car.progress + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div> <!--END ROW -->
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Checking In New Car</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="myForm" ng-submit="submitForm()" id="myForm">
+          <div class="form-group row">
+            <label for="carMake" class="col-sm-2 col-form-label">Make:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.make" type="text" class="form-control add-car-row" id="carMake" placeholder="" name="carMake">
+            </div>
+            <label for="carModel" class="col-sm-2 col-form-label">Model:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.model" type="text" class="form-control add-car-row" id="carModel" placeholder="" name="carModel">
+            </div>
+            <label for="carYear" class="col-sm-2 col-form-label">Year:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.year" type="text" class="form-control add-car-row" id="carYear" placeholder="" name="carYear">
+            </div>
+            <label for="carColor" class="col-sm-2 col-form-label">Color:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.color" type="text" class="form-control add-car-row" id="carColor" placeholder="" name="carColor">
+            </div>
+            <label for="carVin" class="col-sm-2 col-form-label">VIN:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.vin" type="text" class="form-control add-car-row" id="carVin" placeholder="" name="carVin">
+            </div>
+            <label for="carOwner" class="col-sm-2 col-form-label">Owner:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.owner" type="text" class="form-control add-car-row" id="carOwner" placeholder="" name="carOwner">
+            </div>
+            <label for="carOwner" class="col-sm-2 col-form-label">Manager:</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="newCar.manager" type="text" class="form-control add-car-row" id="carManager" placeholder="" name="carManager">
+            </div>
+            <label for="carInitialDiagnosis" class="col-sm-2 col-form-label">Initial Diagnosis:</label>
+            <div class="col-sm-10">
+              <textarea [(ngModel)]="newCar.initialDiagnosis" type="text" class="form-control add-car-row ta-no-resize" rows="5" id="carInitialDiagnosis" placeholder="" name="carInitialDiagnosis"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addCar()" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

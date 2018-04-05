@@ -13,8 +13,10 @@ export class SignupComponent implements OnInit {
   public password1: string;
   public password2: string;
   public accounttype: number;
+  public showNav: boolean;
 
   ngOnInit() {
+    this.showNav = true;
   }
 
   public submitSignup() {

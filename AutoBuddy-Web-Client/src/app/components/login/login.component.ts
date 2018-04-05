@@ -9,10 +9,12 @@ export class LoginComponent implements OnInit {
 
   public email: string;
   public password: string;
+  public showNav: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.showNav = true;
   }
 
   public submitLogin() {
