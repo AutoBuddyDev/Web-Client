@@ -14,10 +14,8 @@
             <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password" name="password2" required>
           </div>
           <div class="form-group">
-            <select [(ngModel)]="accounttype" class="form-control" id="exampleFormControlSelect1" name="accounttype" required>
-              <option hidden selected >Display but don't show in list</option>
-              <option value="0">Consumer</option>
-              <option value="1">Garage</option>
+            <select required [(ngModel)]="accountType" class="form-control" id="exampleFormControlSelect1" name="accounttype">
+              <option *ngFor="let accountType of ['Consumer','Garage']">{{accountType}}</option>
             </select>
           </div>
           <button type="submit" class="btn submit-signup-btn" (click)="submitSignup()">Submit</button>
