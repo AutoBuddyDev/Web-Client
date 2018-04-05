@@ -8,6 +8,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HamburgerComponent } from './components/hamburger/hamburger.component';
+import { RepairComponent } from './components/repair/repair.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,7 +22,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, LandingComponent, LoginComponent, SignupComponent, HamburgerComponent
+    AppComponent, LandingComponent, LoginComponent, SignupComponent, HamburgerComponent, RepairComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule
