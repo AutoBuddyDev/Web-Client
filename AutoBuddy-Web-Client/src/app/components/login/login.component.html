@@ -10,7 +10,7 @@
           <div class="form-group">
             <input [(ngModel)]="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
           </div>
-          <button type="submit" class="btn submit-login-btn" (click)="submitLogin()">Submit</button>
+          <button type="submit" class="btn submit-login-btn" (click)="submitLogin()" [routerLink]="['/garage']">Submit</button>
         </form>
         <p class="form-paragraph">Don't have an account? Sign up <a [routerLink]="['/signup']">here</a>!</p>
       </div>

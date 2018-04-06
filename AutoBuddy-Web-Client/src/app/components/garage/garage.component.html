@@ -6,10 +6,11 @@
   </div>
   <div class="row">
     <div class="col-md-4" *ngFor="let car of cars">
-      <a class="no-decoration" routerLink="/garage/{{ car.id }}">
+      <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
+      <a class="no-decoration" routerLink="/car">
       <div class="card garage-card">
         <div class="card-body">
-          <h5 class="card-title">{{ car.make }}</h5>
+          <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
           <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
           <p class="card-text">Service Manager: {{ car.manager }}</p>
