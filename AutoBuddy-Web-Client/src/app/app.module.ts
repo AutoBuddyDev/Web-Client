@@ -12,13 +12,14 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
 import { FilterCompletedRepairsPipe } from './pipes/filter-completed-repairs.pipe';
 import { GarageComponent } from './components/garage/garage.component';
 import { ProgressComponent } from './components/progress/progress.component';
+import { HamburgerComponent } from './components/hamburger/hamburger.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'garage', component: GarageComponent },
-  { path: 'car',component: CarDetailsComponent},
+  { path: 'car', component: CarDetailsComponent},
   { path: '',
     redirectTo: '/landing',
     pathMatch: 'full' }
@@ -27,7 +28,16 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, LandingComponent, LoginComponent, SignupComponent, GarageComponent, CarRepairsComponent, CarDetailsComponent, FilterCompletedRepairsPipe, ProgressComponent
+    AppComponent,
+    LandingComponent,
+    LoginComponent,
+    SignupComponent,
+    GarageComponent,
+    CarRepairsComponent,
+    CarDetailsComponent,
+    FilterCompletedRepairsPipe,
+    ProgressComponent,
+    HamburgerComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule
