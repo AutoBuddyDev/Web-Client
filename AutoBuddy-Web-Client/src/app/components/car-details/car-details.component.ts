@@ -25,7 +25,7 @@ export class CarDetailsComponent implements OnInit {
     this.car.completedRepairs=[];
     this.car.inProgressRepairs=[];
     this.car.repairs = this.car.completedRepairs.length+this.car.inProgressRepairs.length;
-    this.progress=0;
+    this.progress=(this.car.inProgressRepairs.length/this.car.repairs)*100;
     // this.getProgress();
 
   }
