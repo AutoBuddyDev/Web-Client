@@ -13,6 +13,7 @@ import { FilterCompletedRepairsPipe } from './pipes/filter-completed-repairs.pip
 import { GarageComponent } from './components/garage/garage.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { HamburgerComponent } from './components/hamburger/hamburger.component';
+import { PartOrdersComponent } from './components/part-orders/part-orders.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     CarDetailsComponent,
     FilterCompletedRepairsPipe,
     ProgressComponent,
-    HamburgerComponent
+    HamburgerComponent,
+    PartOrdersComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-9">
-      <h1>My Garage:</h1>
+      <h1 id="garageLink"[routerLink]="['/garage']">My Garage:</h1>
       <h3> <span class="carType">Car:</span> {{car.make}} {{car.model}}</h3>
       <h3> <span class="checkedIn">Checked In:</span> {{car.checkedIn | date:'shortDate'}}</h3>
       <div class = "carContainer">
