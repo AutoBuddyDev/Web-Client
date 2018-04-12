@@ -106,3 +106,16 @@ p{
 .submit {
   background-color: rgb(20, 194, 20)
 }
+
+#progressbar{
+  position: relative;
+  right: 50vw;
+  top:80vh;
+}
+
+
+.chooseSpot{
+  display: block;
+  max-width: 100%;
+  padding:1vw;
+}

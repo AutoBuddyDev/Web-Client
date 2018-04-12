@@ -34,6 +34,7 @@ export class CarRepairsComponent implements OnInit {
   public repaired:boolean;
   public part: string;
   public id:number;
+  public progress:number;
 
   constructor() { }
 
@@ -45,7 +46,7 @@ export class CarRepairsComponent implements OnInit {
     };
     this.repaired=true;
     this.noteVisible=[];
-
+    this.progress=0;
   }
   addPart() {
     this.newRepair.parts.push(this.part);
@@ -63,13 +64,25 @@ export class CarRepairsComponent implements OnInit {
     else{
       this.inProgressRepairs.push(this.newRepair);
     }
+    this.progress=100*this.completeRepairs.length/(this.completeRepairs.length+this.inProgressRepairs.length)
     this.newRepair={
       parts:[]
     }
+    this.part="";
   }
   public markComplete(repairID:number){
-    this.inProgressRepairs[repairID-1].completed=true;
-    this.completeRepairs.push(this.inProgressRepairs[repairID-1])
-    this.inProgressRepairs.splice(repairID-1,1);
+    let currentId;
+    for(let x = 0;x<this.inProgressRepairs.length;x++){
+      if(this.inProgressRepairs[x].id==repairID){
+        currentId = x;
+      }
+    }
+    this.inProgressRepairs[currentId].completed=true;
+    this.completeRepairs.push(this.inProgressRepairs[currentId])
+    this.inProgressRepairs.splice(currentId,1);
+    this.progress=100*this.completeRepairs.length/(this.completeRepairs.length+this.inProgressRepairs.length)
+
   }
+
+
 }
