@@ -1,4 +1,8 @@
+import { UserRepository } from './../../domain/user-repository';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CarRepository } from '../../domain/car-repository';
+import { CarRepairsComponent } from '../car-repairs/car-repairs.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +15,11 @@ export class LoginComponent implements OnInit {
   public password: string;
   public showNav: boolean;
 
-  constructor() { }
+  constructor(
+    private userRepository: UserRepository,
+    private activedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.showNav = true;
@@ -20,6 +28,15 @@ export class LoginComponent implements OnInit {
   public submitLogin() {
     console.log(this.email);
     console.log(this.password);
+    const user = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.userRepository.login(user).subscribe(res => {
+      console.log('res: ', res);
+      this.router.navigateByUrl('garage');
+    });
   }
 
 

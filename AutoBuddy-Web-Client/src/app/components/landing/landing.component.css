@@ -68,3 +68,16 @@
   min-width: 8vw;
 }
 
+.grey-color {
+  background-color: #888888;
+}
+
+.image {
+  width:300px;
+  height: 300px;
+}
+
+.font-weight {
+  font-weight: bold;
+}
+

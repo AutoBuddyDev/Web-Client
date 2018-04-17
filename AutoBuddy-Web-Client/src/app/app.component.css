@@ -14,7 +14,7 @@
 main {
   background:white; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
-  overflow: hidden;
+  overflow: scroll;
   background-size: cover;
   /* background-image: url("/assets/images/zigzag-road-crop.png"); */
   height: 100vh;
@@ -60,4 +60,14 @@ main {
 
 .form-paragraph {
   margin-top: 2%;
+}
+
+.nav {
+    top: 0;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    z-index: 2;
 }

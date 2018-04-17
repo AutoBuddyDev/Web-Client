@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     CarDetailsComponent,
     FilterCompletedRepairsPipe,
     ProgressComponent,
-    HamburgerComponent
+    HamburgerComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule
