@@ -35,12 +35,14 @@ export class SignupComponent implements OnInit {
     console.log(this.accountType);
 
     const user = {
-      password: this.password1,
+      user_password: this.password1,
       email:  this.email,
       address: this.address,
       full_name: this.full_name,
-      username: this.username
-    }
+      username: this.username,
+      favorite_garage: 0
+    };
+
     this.userRepository.signup(user).subscribe(res => {
       console.log('res: ', res);
       this.router.navigateByUrl('login');

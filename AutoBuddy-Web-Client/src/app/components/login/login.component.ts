@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     console.log(this.password);
     const user = {
       email: this.email,
-      password: this.password
+      user_password: this.password
     };
 
     this.userRepository.login(user).subscribe(res => {

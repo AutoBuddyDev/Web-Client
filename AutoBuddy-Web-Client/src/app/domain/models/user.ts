@@ -3,5 +3,6 @@ export class User {
   full_name?: String;
   address?: String;
   email: String;
-  password: String;
+  user_password: String;
+  favorite_garage?: Number;
 }

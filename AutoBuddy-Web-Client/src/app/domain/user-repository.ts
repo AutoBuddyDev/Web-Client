@@ -16,6 +16,7 @@ export class UserRepository extends RepositoryService<User> {
 
   public login(user: User): Observable<User> {
     const url = this.endPoint + '/login';
+    console.log('user: ', user);
     return this.httpClient.post(url, user, this.httpOptions).pipe(
       catchError(this.handleException)
     );

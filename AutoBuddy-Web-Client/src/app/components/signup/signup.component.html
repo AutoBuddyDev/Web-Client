@@ -33,7 +33,7 @@
               <option *ngFor="let accountType of ['Consumer','Garage']">{{accountType}}</option>
             </select>
           </div>
-          <button type="submit" class="btn submit-signup-btn" [routerLink]="['/login']" (click)="submitSignup()">Submit</button>
+          <button type="button" class="btn submit-signup-btn" [routerLink]="['/login']" (click)="submitSignup()">Submit</button>
         </form>
         <p class="form-paragraph">Already a member? Login
           <a [routerLink]="['/login']">here</a>!</p>
