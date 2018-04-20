@@ -8,7 +8,7 @@ export abstract class RepositoryService<T> {
 
   protected abstract endPoint;
 
-  private httpOptions  = {
+  protected httpOptions  = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json',
       'Authorization' : 'dbgui'
@@ -38,23 +38,12 @@ export abstract class RepositoryService<T> {
     );
   }
 
-  public login(user: T): Observable<T> {
-    return this.httpClient.post(`${this.endPoint}`, user, this.httpOptions).pipe(
-      catchError(this.handleException)
-    );
-  }
+
 
   // Update information on car if needed
   public update(id: number, item: T): Observable<T> {
     return this.httpClient.put(`${this.endPoint}/${id}`, item, this.httpOptions).pipe(
       catchError(this.handleException)
-    );
-  }
-
-  // Remove car
-  public delete(id: number): Observable<T> {
-    return this.httpClient.delete(`${this.endPoint}/${id}`, this.httpOptions).pipe(
-    NgControlStatus
     );
   }
 
