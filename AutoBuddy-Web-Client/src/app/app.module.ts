@@ -15,17 +15,23 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { HamburgerComponent } from './components/hamburger/hamburger.component';
 import { PartOrdersComponent } from './components/part-orders/part-orders.component';
 
+import { CommonModule } from '@angular/common';
+import { CalendarModule } from 'angular-calendar';
+import { ProfileComponent } from './components/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoUtilsModule } from '../../demo-utils/module';
+
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'garage', component: GarageComponent },
   { path: 'car', component: CarDetailsComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: '',
     redirectTo: '/landing',
     pathMatch: 'full' }
 ];
-
 
 @NgModule({
   declarations: [
@@ -39,10 +45,11 @@ const appRoutes: Routes = [
     FilterCompletedRepairsPipe,
     ProgressComponent,
     HamburgerComponent,
-    PartOrdersComponent
+    PartOrdersComponent,
+    ProfileComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule
+    BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule, BrowserAnimationsModule, CalendarModule.forRoot(), CommonModule, DemoUtilsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

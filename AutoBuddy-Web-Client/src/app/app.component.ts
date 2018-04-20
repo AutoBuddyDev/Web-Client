@@ -12,7 +12,6 @@ export class AppComponent {
   showBg: boolean = true;
   public location = '' ;
 
-
   constructor(private  _router : Router){
     this.location = _router.url;
   }
