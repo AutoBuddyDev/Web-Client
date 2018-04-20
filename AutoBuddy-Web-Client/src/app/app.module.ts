@@ -47,6 +47,7 @@ const appRoutes: Routes = [
     HamburgerComponent,
     PartOrdersComponent,
     ProfileComponent
+
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule, BrowserAnimationsModule, CalendarModule.forRoot(), CommonModule, DemoUtilsModule
