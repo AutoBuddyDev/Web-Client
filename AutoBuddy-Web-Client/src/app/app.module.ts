@@ -14,7 +14,6 @@ import { GarageComponent } from './components/garage/garage.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { HamburgerComponent } from './components/hamburger/hamburger.component';
 import { PartOrdersComponent } from './components/part-orders/part-orders.component';
-import { RepairBubbleComponent } from './components/repair-bubble/repair-bubble.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -41,7 +40,6 @@ const appRoutes: Routes = [
     ProgressComponent,
     HamburgerComponent,
     PartOrdersComponent,
-    RepairBubbleComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, HttpModule
