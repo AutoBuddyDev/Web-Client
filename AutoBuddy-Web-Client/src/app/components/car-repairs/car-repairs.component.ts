@@ -35,10 +35,16 @@ export class CarRepairsComponent implements OnInit {
   public part: string;
   public id:number;
   public progress:number;
+  public crosshair: boolean;
+  public crosshairCursor:boolean;
+  public crosshairX: number;
+  public crosshairY: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.crosshairCursor=false;
+    this.crosshair=false;
     this.id=0;
     this.part="";
     this.newRepair ={
@@ -77,6 +83,7 @@ export class CarRepairsComponent implements OnInit {
       console.log(this.newRepair.x);
       console.log(this.newRepair.y);
     }
+    this.crosshairCursor=false;
     this.progress=100*this.completeRepairs.length/(this.completeRepairs.length+this.inProgressRepairs.length)
     this.newRepair={
       parts:[]
@@ -84,7 +91,8 @@ export class CarRepairsComponent implements OnInit {
     this.part="";
   }
   onMousedown(event) {
-
+      this.crosshairX = event.offsetX;
+      this.crosshairY = event.offsetY;
       this.newRepair.x = event.offsetX / event.target.clientWidth;
       this.newRepair.y = event.offsetY / event.target.clientHeight;
   }
