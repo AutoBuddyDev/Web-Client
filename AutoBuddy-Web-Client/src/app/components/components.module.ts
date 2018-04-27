@@ -1,3 +1,4 @@
+import { PartOrdersComponent } from './part-orders/part-orders.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProgressComponent } from './progress/progress.component';
 import { LoginComponent } from './login/login.component';
@@ -28,7 +29,8 @@ import { CarRepairsComponent } from './car-repairs/car-repairs.component';
     HamburgerComponent,
     LoginComponent,
     ProgressComponent,
-    SignupComponent
+    SignupComponent,
+    PartOrdersComponent
   ],
   exports: [
     HamburgerComponent

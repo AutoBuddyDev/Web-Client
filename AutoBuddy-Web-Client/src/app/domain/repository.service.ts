@@ -12,6 +12,7 @@ export abstract class RepositoryService<T> {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json',
       'Authorization' : 'dbgui'
+
     })
   };
 

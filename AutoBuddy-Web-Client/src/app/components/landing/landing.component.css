@@ -68,7 +68,6 @@
   min-width: 8vw;
 }
 
-<<<<<<< HEAD
 
 /* landing */
 
@@ -82,11 +81,13 @@
   text-align: center;
   color: #000000;
 }
-
+#landingPage{
+  height:100vh;
+}
 main {
   background:white; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
-  overflow: hidden;
+  overflow: scroll;
   background-size: cover;
   background-image: url("/assets/images/zigzag-road-crop.png");
   height: 100vh;
@@ -138,19 +139,28 @@ main {
   margin-top:35vh;
 }
 
+/* About Page */
 
-=======
-.grey-color {
-  background-color: #888888;
+.about{
+  background:black;
+  margin:auto 0;
+
+}
+.about .col-3{
+  padding-top:10vh;
+  padding-bottom:10vh;
 }
 
-.image {
-  width:300px;
-  height: 300px;
+.about .col-3 p{
+  color:#fabc4c;
+  margin:0;
+}
+.about .image{
+  width:20vw;
+  padding-top:10vh;
+  padding-bottom:10vh;
 }
 
-.font-weight {
-  font-weight: bold;
+.aboutTwo {
+  background:lightgrey;
 }
-
->>>>>>> 3ae8ae22269e1e2402a421a3ce4ad480e93d87da

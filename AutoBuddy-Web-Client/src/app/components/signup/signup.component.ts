@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
     };
 
     this.userRepository.signup(user).subscribe(res => {
-      console.log('res: ', res);
+      // console.log('res: ', res);
       this.router.navigateByUrl('login');
     });
   }

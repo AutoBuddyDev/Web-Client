@@ -1,18 +1,18 @@
-<nav class="navbar navbar-expand-md navbar-light bg-faded">
-  <a class="navbar-brand navy-text" [routerLink]="['/']">
-    <img alt="Brand" src="./assets/images/ab-logo.png" height="35px" width="160px">
-  </a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <header class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <button class="btn login-btn" type="submit" [routerLink]="['/signup']">Signup</button>
-        <button class="btn login-btn" type="submit" [routerLink]="['/login']">Login</button>
-        <app-hamburger class="mr-3"></app-hamburger>
-      </li>
-    </ul>
-  </header>
-</nav>
+<nav class="navbar navbar-expand-md navbar-light bg-white nav">
+    <a class="navbar-brand navy-text" [routerLink]="['/']">
+      <img alt="Brand" src="./assets/images/ab-logo.png" height="35px" width="160px">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <header class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="btn login-btn" type="submit" [routerLink]="['/signup']">Signup</button>
+          <button class="btn login-btn" type="submit" [routerLink]="['/login']">Login</button>
+          <app-hamburger class="mr-3"></app-hamburger>
+        </li>
+      </ul>
+    </header>
+  </nav>
   <router-outlet></router-outlet>
