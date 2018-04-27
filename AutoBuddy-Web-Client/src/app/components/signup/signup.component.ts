@@ -49,6 +49,19 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  public submitSignupGarage() {
+    const garage = {
+
+    };
+
+    this.userRepository.signupGarage(garage).subscribe(res => {
+      console.log('res: ', res);
+      this.router.navigateByUrl('login');
+    });
+  }
+
+
+
 }
 
 export class accountType{

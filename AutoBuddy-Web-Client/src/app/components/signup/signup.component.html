@@ -6,11 +6,11 @@
         <form name="signupform">
 
           <div>
-              <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="full_name" #name="ngModel" placeholder="Name"
-              required>
-  
+            <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="full_name" #name="ngModel"
+              placeholder="Name" required>
+
             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-  
+
               <div *ngIf="name?.errors.required">
                 Name is required.
               </div>
@@ -24,23 +24,35 @@
           </div>
 
           <div>
+            <input id="CompanyEmail" type="email" name="email" [(ngModel)]="emailS" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              required #CompanyEmail="ngModel" placeholder="Please enter Company Email address" />
 
-          <input id="CompanyEmail" type="email" name="email" [(ngModel)]="emailS" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-            required #CompanyEmail="ngModel" placeholder="Please enter Company Email address" />
-
-          <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
-            <div *ngIf="CompanyEmail?.errors.required"> Company Email is required. </div>
-            <div *ngIf="CompanyEmail.errors && CompanyEmail?.errors.pattern"> Email is invalid </div>
+            <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
+              <div *ngIf="CompanyEmail?.errors.required"> Company Email is required. </div>
+              <div *ngIf="CompanyEmail.errors && CompanyEmail?.errors.pattern"> Email is invalid </div>
+            </div>
           </div>
 
-        </div>
+          <div>
+            <input id="username" name="username" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="username" #usernameModel="ngModel"
+              placeholder="Username" required>
 
-          <div class="form-group">
-            <input [(ngModel)]="username" type="username" class="form-control" id="username" placeholder="Username" name="username" required>
+            <div *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched)" class="alert alert-danger">
+
+              <div *ngIf="usernameModel?.errors.required">
+                Username is required.
+              </div>
+              <div *ngIf="usernameModel?.errors.minlength">
+                Username must be at least 4 characters long.
+              </div>
+              <div *ngIf="usernameModel?.errors.forbiddenName">
+                Username cannot be Bob.
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
-            <input [(ngModel)]="address" type="username" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address"
+            <input [(ngModel)]="address" type="text" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address"
               name="address" required>
           </div>
 
