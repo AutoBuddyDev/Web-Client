@@ -21,12 +21,17 @@ export class SignupComponent implements OnInit {
   public password2: string;
   public accountType: string;
   public username: string;
+  public location: string;
+  public description: string;
 
 
   ngOnInit() {
   }
 
-  public submitSignup() {
+
+
+
+  public submitSignupUser() {
     console.log(this.emailS);
     console.log(this.password1);
     console.log(this.password2);
@@ -50,14 +55,29 @@ export class SignupComponent implements OnInit {
   }
 
   public submitSignupGarage() {
-    const garage = {
 
+    console.log('this.description: ', this.description)
+
+    const garage = {
+      garage_password: this.password1,
+    garage_name: this.full_name,
+    garage_email: this.emailS,
+    garage_location: this.location,
+    garage_description: this.description
     };
 
     this.userRepository.signupGarage(garage).subscribe(res => {
       console.log('res: ', res);
       this.router.navigateByUrl('login');
     });
+  }
+
+  public submitSignup() {
+    if(this.accountType === "Consumer"){
+      this.submitSignupUser();
+    }  else {
+      this.submitSignupGarage();
+    }
   }
 
 
