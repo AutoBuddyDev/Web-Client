@@ -103,7 +103,7 @@
 
             <div class="form-group">
               <input id="CompanyEmail" type="email" name="email" [(ngModel)]="emailS" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-                required #CompanyEmail="ngModel" placeholder="Please enter Company Email address" />
+                required #CompanyEmail="ngModel" placeholder="Company email address" />
 
               <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
                 <div *ngIf="CompanyEmail?.errors.required"> Company Email is required. </div>
@@ -134,8 +134,18 @@
             </div>
 
             <div class="form-group">
-              <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password1"
-                required>
+                <input id="password1" type="password" required minlength="8" name="password1" [(ngModel)]="password1" class="form-control" pattern="[a-zA-Z0-9.-]{8,}"
+                required #PasswordModel="ngModel" placeholder="Password" />
+
+              <div *ngIf="PasswordModel.invalid && (PasswordModel.dirty || PasswordModel.touched)" class="alert alert-danger">
+                <div *ngIf="PasswordModel?.errors.required"> Password is required. </div>
+                <div *ngIf="PasswordModel?.errors.minlength; else other_error">
+                    Password must be at least 8 characters long.
+                  </div>
+                <ng-template #other_error>
+                   Password must follow guidelines.
+                </ng-template>
+              </div>
             </div>
 
             <div class="form-group">
