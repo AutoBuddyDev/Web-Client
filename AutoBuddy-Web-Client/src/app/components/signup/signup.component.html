@@ -4,35 +4,62 @@
       <div class="card-body signup-card-body">
         <h1 class="card-title">Sign up</h1>
         <form name="signupform">
-          <div class="form-group">
-            <input [(ngModel)]="full_name" type="username" class="form-control" id="full_name"  placeholder="Full name"
-              name="full_name" required>
-          </div>
-          <div class="form-group">
-            <input [(ngModel)]="email" type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address"
-              name="email" required>
-          </div>
-          <div class="form-group">
-              <input [(ngModel)]="username" type="username" class="form-control" id="username"  placeholder="Username"
-                name="username" required>
+
+          <div>
+              <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="full_name" #name="ngModel" placeholder="Name"
+              required>
+  
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+  
+              <div *ngIf="name?.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="name?.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+              <div *ngIf="name?.errors.forbiddenName">
+                Name cannot be Bob.
+              </div>
             </div>
+          </div>
+
+          <div>
+
+          <input id="CompanyEmail" type="email" name="email" [(ngModel)]="emailS" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            required #CompanyEmail="ngModel" placeholder="Please enter Company Email address" />
+
+          <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
+            <div *ngIf="CompanyEmail?.errors.required"> Company Email is required. </div>
+            <div *ngIf="CompanyEmail.errors && CompanyEmail?.errors.pattern"> Email is invalid </div>
+          </div>
+
+        </div>
+
+          <div class="form-group">
+            <input [(ngModel)]="username" type="username" class="form-control" id="username" placeholder="Username" name="username" required>
+          </div>
+
           <div class="form-group">
             <input [(ngModel)]="address" type="username" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address"
               name="address" required>
           </div>
+
           <div class="form-group">
             <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password1"
               required>
           </div>
+
           <div class="form-group">
             <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password"
               name="password2" required>
           </div>
+
           <div class="form-group">
             <select required [(ngModel)]="accountType" class="form-control" id="exampleFormControlSelect1" name="accounttype">
               <option *ngFor="let accountType of ['Consumer','Garage']">{{accountType}}</option>
             </select>
           </div>
+
           <button type="button" class="btn submit-signup-btn" [routerLink]="['/login']" (click)="submitSignup()">Submit</button>
         </form>
         <p class="form-paragraph">Already a member? Login
