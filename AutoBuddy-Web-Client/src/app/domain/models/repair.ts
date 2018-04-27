@@ -6,6 +6,9 @@ export class Repair {
   x?: number;
   y?: number;
   id?: number;
+  vehicle_id?: number;
+  cost?: number;
   completed?: boolean;
   date?: Date;
+  repairStatus?: string;
 }

@@ -2,6 +2,8 @@ import { Car } from '../../domain/models';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Component, OnInit, Input } from '@angular/core';
 import { Repair } from '../../domain/models/repair';
+import { RepairRepository } from '../../domain/repair-repository';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-car-repairs',
   templateUrl: './car-repairs.component.html',
@@ -40,7 +42,11 @@ export class CarRepairsComponent implements OnInit {
   public crosshairX: number;
   public crosshairY: number;
 
-  constructor() { }
+  constructor(
+    private repairRepository: RepairRepository,
+    private activedRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.crosshairCursor=false;
@@ -64,6 +70,21 @@ export class CarRepairsComponent implements OnInit {
     this.newRepair.date=this.today;
     this.newRepair.completed=false;
     this.newRepair.id= this.id;
+
+    // we dont actually need these, but for the purpose
+    // of the request, we need them.
+
+    this.newRepair.vehicle_id = undefined; // no car id so undef.
+    this.newRepair.repairStatus = 'ok';
+    // need to add cost, carId, repairStatus (string)
+
+    // API call
+    this.repairRepository.addRepair(this.newRepair).subscribe(res => {
+      console.log('res: ', res);
+    });
+    // End of api call
+
+
     if(this.newRepair.completed){
       this.completeRepairs.push(this.newRepair);
     }

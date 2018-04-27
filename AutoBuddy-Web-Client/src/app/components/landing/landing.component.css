@@ -68,6 +68,7 @@
   min-width: 8vw;
 }
 
+<<<<<<< HEAD
 
 /* landing */
 
@@ -138,3 +139,18 @@ main {
 }
 
 
+=======
+.grey-color {
+  background-color: #888888;
+}
+
+.image {
+  width:300px;
+  height: 300px;
+}
+
+.font-weight {
+  font-weight: bold;
+}
+
+>>>>>>> 3ae8ae22269e1e2402a421a3ce4ad480e93d87da

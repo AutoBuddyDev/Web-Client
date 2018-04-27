@@ -5,22 +5,38 @@
         <h1 class="card-title">Sign up</h1>
         <form name="signupform">
           <div class="form-group">
-            <input [(ngModel)]="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address" name="email" required>
+            <input [(ngModel)]="full_name" type="username" class="form-control" id="full_name"  placeholder="Full name"
+              name="full_name" required>
           </div>
           <div class="form-group">
-            <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password1" required>
+            <input [(ngModel)]="email" type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address"
+              name="email" required>
           </div>
           <div class="form-group">
-            <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password" name="password2" required>
+              <input [(ngModel)]="username" type="username" class="form-control" id="username"  placeholder="Username"
+                name="username" required>
+            </div>
+          <div class="form-group">
+            <input [(ngModel)]="address" type="username" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address"
+              name="address" required>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password1"
+              required>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password"
+              name="password2" required>
           </div>
           <div class="form-group">
             <select required [(ngModel)]="accountType" class="form-control" id="exampleFormControlSelect1" name="accounttype">
               <option *ngFor="let accountType of ['Consumer','Garage']">{{accountType}}</option>
             </select>
           </div>
-          <button type="submit" class="btn submit-signup-btn" [routerLink]="['/login']" (click)="submitSignup()">Submit</button>
+          <button type="button" class="btn submit-signup-btn" [routerLink]="['/login']" (click)="submitSignup()">Submit</button>
         </form>
-        <p class="form-paragraph">Already a member? Login <a [routerLink]="['/login']">here</a>!</p>
+        <p class="form-paragraph">Already a member? Login
+          <a [routerLink]="['/login']">here</a>!</p>
       </div>
     </div>
   </div>

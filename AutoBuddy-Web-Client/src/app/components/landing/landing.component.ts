@@ -8,9 +8,16 @@ import { AppComponent } from '../../app.component';
 })
 export class LandingComponent implements OnInit {
 
-  showBg: boolean = false;
+  showBg: Boolean = false;
+  height: any;
+  width: any;
 
-  constructor() { }
+  constructor() {
+    this.height = (window.screen.height) + 'px';
+    this.width = (window.screen.width) + 'px';
+      console.log(this.height);
+      console.log(this.width);
+  }
 
   ngOnInit() {
     // this.AppComponent.showBg = false;
