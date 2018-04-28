@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CarCard } from '../../domain/index';
 import { DatePipe } from '@angular/common';
+import { Part } from '../../domain/models/part'
 
 @Component({
   selector: 'app-garage',
@@ -21,12 +22,12 @@ export class GarageComponent implements OnInit {
   public myForm;
   public showBg: boolean;
   public isLoggedIn: boolean;
-
+  public orders: Part[]=[];
   @Input()
   public cars: CarCard[] = [];
 
   constructor() { }
-
+  
   private addCar() {
       this.newCar.checkInDate = Date.now();
       this.newCar.id = Math.floor(Math.random() * 25) + 1;

@@ -37,6 +37,10 @@ export class CarRepairsComponent implements OnInit {
   public part: string;
   public id:number;
   public progress:number;
+  public crosshair: boolean;
+  public crosshairCursor:boolean;
+  public crosshairX: number;
+  public crosshairY: number;
 
   constructor(
     private repairRepository: RepairRepository,
@@ -45,6 +49,8 @@ export class CarRepairsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.crosshairCursor=false;
+    this.crosshair=false;
     this.id=0;
     this.part="";
     this.newRepair ={
@@ -84,12 +90,32 @@ export class CarRepairsComponent implements OnInit {
     }
     else{
       this.inProgressRepairs.push(this.newRepair);
+      let image = document.getElementById('carPhoto');
+      // relative placing of circle based on width/height ratio
+      let xPosImage = image.clientWidth*this.newRepair.x;
+      let yPosImage = image.clientHeight*this.newRepair.y;
+      // offset of image posiition
+      let imageOffsetX = image.offsetLeft;
+      let imageOffsetY = image.offsetTop;
+      // final position of dot = offset + relative
+      this.newRepair.x = xPosImage+imageOffsetX-45;
+      this.newRepair.y = yPosImage+imageOffsetY+50;
+
+      console.log(this.newRepair.x);
+      console.log(this.newRepair.y);
     }
+    this.crosshairCursor=false;
     this.progress=100*this.completeRepairs.length/(this.completeRepairs.length+this.inProgressRepairs.length)
     this.newRepair={
       parts:[]
     }
     this.part="";
+  }
+  onMousedown(event) {
+      this.crosshairX = event.offsetX;
+      this.crosshairY = event.offsetY;
+      this.newRepair.x = event.offsetX / event.target.clientWidth;
+      this.newRepair.y = event.offsetY / event.target.clientHeight;
   }
   public markComplete(repairID:number){
     let currentId;

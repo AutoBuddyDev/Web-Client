@@ -1,6 +1,13 @@
 <button type="button" class="btn btn-success text-dark" data-toggle="modal" data-target="#exampleModalLong">
   Add Repair
 </button>
+<div *ngFor = "let bubble of inProgressRepairs" class = "circle" [style.left]="bubble.x + 'px'" [style.top]="bubble.y + 'px'" [style.background]="'red'">
+
+</div>
+<div *ngFor = "let bubble of completeRepairs" class = "circle" [style.left]="bubble.x + 'px'" [style.top]="bubble.y + 'px'" [style.background]="'green'">
+
+</div>
+
 <app-progress id="progressbar" [progress]="progress"></app-progress>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -40,8 +47,9 @@
           <textarea placeholder="Enter Notes"class="form-control ml-1" id="repair_notes" rows="3" name="repair_notes" [(ngModel)]="newRepair.notes"></textarea>
 
           <!-- Choose where repair is located-->
-          <button class = "btn btn-primary ml-1 mt-2">Choose location of repair</button>
-          <img class = "chooseSpot" src = "assets/images/car-outline.png"/>
+          <button (click) = "crosshairCursor = true"class = "btn btn-primary ml-1 mt-2">Choose location of repair</button>
+          <div  *ngIf="crosshair"class = "circle2" [ngStyle]="{'display': crosshairCursor == true ? 'block' : 'none'}"[style.background]="'red'" [style.left]="crosshairX + 'px'" [style.top]="crosshairY + 'px'"></div>
+          <img [ngStyle]="{'cursor': crosshairCursor == true ? 'crosshair' : 'default'}" (click)="onMousedown($event); crosshair=true"class = "chooseSpot" src = "assets/images/car-outline.png"/>
         </form>
       </div>
       <div class="modal-footer">

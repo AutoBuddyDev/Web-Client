@@ -113,9 +113,26 @@ p{
   top:80vh;
 }
 
+/* css for choosing hot spot on car from form */
 
 .chooseSpot{
   display: block;
   max-width: 100%;
   padding:1vw;
 }
+
+.circle{
+  position:fixed;
+  background:radial-gradient(red,darkred,black);
+  width:3vw;
+  height:3vw;
+  border-radius:  50%;
+}
+.circle2{
+  position:relative;
+  background:radial-gradient(red,darkred,black);
+  width:3vw;
+  height:3vw;
+  border-radius:  50%;
+}
+

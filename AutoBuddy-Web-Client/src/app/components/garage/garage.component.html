@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12" style="text-align: center;">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="min-width: 30vw;">Add Car</button><br><br>
+
+    <div class="col-md-12" >
+      <h1 class="d-inline">Cars</h1>
+      <button type="button" class="btn btn-success d-inline ml-2" data-toggle="modal" data-target="#exampleModal" >Add Car</button><br><br>
     </div>
   </div>
   <div class="row">
@@ -26,6 +28,8 @@
     </div>
   </div> <!--END ROW -->
 </div>
+<app-part-orders [parts]="orders"></app-part-orders>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -15,6 +15,8 @@ export class CarDetailsComponent implements OnInit {
   constructor() { }
   public date: Date;
   public progress: number;
+  public garageName: string;
+  public favorited:boolean;
   ngOnInit() {
     this.date = new Date();
     this.car = new Car();
@@ -26,12 +28,19 @@ export class CarDetailsComponent implements OnInit {
     this.car.inProgressRepairs=[];
     this.car.repairs = this.car.completedRepairs.length+this.car.inProgressRepairs.length;
     this.progress=(this.car.inProgressRepairs.length/this.car.repairs)*100;
+    this.garageName="Bob's Garage";
+    this.favorited=false;
     // this.getProgress();
 
   }
 
-  // getProgress(): void{
-  //   this.progress = this.progressService.getProgress();
-  // }
+  public favorite(name:string){
+    if(!this.favorited){
+      this.favorited=true;
+    }
+    else{
+      this.favorited=false;
+    }
+  }
 
 }

@@ -25,15 +25,25 @@ h1{
   position: relative;
   top: 15vh;
 }
-#carPhoto{
-  display: block;
-  margin:0 auto;
-  max-width:100%
-}
+
 .carContainer{
   background:#f3f3f3;
   padding-top:10vh;
   padding-bottom:10vh;
 
+}
+#carPhoto{
+  display: block;
+  max-width: 100%;
+}
+#garageLink:hover{
+  cursor:pointer;
+}
+.star:after{
+  content: "\2605";
+}
+.star{
+  position: absolute;
+  z-index:100;
 }
 
