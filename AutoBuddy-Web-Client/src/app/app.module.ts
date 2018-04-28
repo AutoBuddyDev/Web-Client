@@ -11,6 +11,7 @@ import { UserRepository } from './domain/user-repository';
 import { CarRepository } from './domain/car-repository';
 import { RepositoryService } from './domain/repository.service';
 import { ComponentsModule } from './components/components.module';
+import { RepairRepository } from './domain/repair-repository';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ComponentsModule } from './components/components.module';
   ],
   providers: [
     UserRepository,
-    CarRepository
+    CarRepository,
+    RepairRepository
   ],
   bootstrap: [AppComponent]
 })
