@@ -1,11 +1,17 @@
 <div class="Aligner login-aligner">
   <div class="Aligner-item login-aligner-item">
-    <div class="card one-hundred-precent-height login-card">
+    <div class="card one-hundred-precent-height login-card border border-dark round-edges">
       <div class="card-body login-card-body">
-        <h1 class="card-title">Login</h1>
+        <h1 class="card-title text-center pb-2 open-sans">Login</h1>
         <form name="loginform">
           <div class="form-group">
-            <input [(ngModel)]="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address" name="email">
+            <input id="CompanyEmail" type="email" name="email" [(ngModel)]="email" class="form-control" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              required #CompanyEmail="ngModel" placeholder="Email" />
+
+            <div *ngIf="CompanyEmail.invalid && (CompanyEmail.dirty || CompanyEmail.touched)" class="alert alert-danger">
+              <div *ngIf="CompanyEmail?.errors.required"> Email is required. </div>
+              <div *ngIf="CompanyEmail.errors && CompanyEmail?.errors.pattern"> Email is invalid </div>
+            </div>
           </div>
           <div class="form-group">
             <input [(ngModel)]="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">

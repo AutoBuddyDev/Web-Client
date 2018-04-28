@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRepository } from '../../domain/user-repository';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { FormsModule, Validators, EmailValidator } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,18 +16,23 @@ export class SignupComponent implements OnInit {
   ) { }
   public full_name: string;
   public address: string;
-  public email: string;
+  public emailS: string;
   public password1: string;
   public password2: string;
   public accountType: string;
   public username: string;
+  public location: string;
+  public description: string;
 
 
   ngOnInit() {
   }
 
-  public submitSignup() {
-    console.log(this.email);
+
+
+
+  public submitSignupUser() {
+    console.log(this.emailS);
     console.log(this.password1);
     console.log(this.password2);
     console.log(this.full_name);
@@ -36,7 +41,7 @@ export class SignupComponent implements OnInit {
 
     const user = {
       user_password: this.password1,
-      email:  this.email,
+      email:  this.emailS,
       address: this.address,
       full_name: this.full_name,
       username: this.username,
@@ -48,6 +53,34 @@ export class SignupComponent implements OnInit {
       this.router.navigateByUrl('login');
     });
   }
+
+  public submitSignupGarage() {
+
+    console.log('this.description: ', this.description)
+
+    const garage = {
+      garage_password: this.password1,
+    garage_name: this.full_name,
+    garage_email: this.emailS,
+    garage_location: this.location,
+    garage_description: this.description
+    };
+
+    this.userRepository.signupGarage(garage).subscribe(res => {
+      console.log('res: ', res);
+      this.router.navigateByUrl('login');
+    });
+  }
+
+  public submitSignup() {
+    if(this.accountType === "Consumer"){
+      this.submitSignupUser();
+    }  else {
+      this.submitSignupGarage();
+    }
+  }
+
+
 
 }
 
