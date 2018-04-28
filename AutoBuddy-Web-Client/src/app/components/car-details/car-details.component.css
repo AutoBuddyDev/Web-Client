@@ -3,6 +3,9 @@ body{
   background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.mainRow{
+  border:1px solid lightgrey;
+}
 .col-9{
   padding:0 11vw;
 
@@ -20,6 +23,8 @@ h1{
 .carRepairs{
   padding:0;
   padding-right:1vw;
+  border-left:1px solid lightgrey;
+  background: white;
 }
 .progress{
   position: relative;

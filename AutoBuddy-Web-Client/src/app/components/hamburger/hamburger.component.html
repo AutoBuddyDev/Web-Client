@@ -1,11 +1,14 @@
 <div class="wrapper">
-    <div class="contents">
+    <div (mouseleave)="openNav($event)" class="contents">
         <div class="inner">
-            <a [routerLink]="['/garage']">Garage </a>
+            <button  [class]="nav"  [routerLink]="['/garage']"><span class = "mask"></span>Garage </button>
+            <button    [class]="nav"type="submit" [routerLink]="['/signup']"><span class = "mask"></span>Signup</button>
+            <button  [class]="nav" type="submit" [routerLink]="['/login']"><span class = "mask"></span>Login</button>
         </div>
     </div>
     <span class="label">
-    <img alt="Menu" src="../../../assets/images/burger-icon.png" class="hamburger mr-10" width="10px" height="10px">
+    <img (mouseenter)="openNav($event)"  alt="Menu" src="../../../assets/images/menu.png" class="hamburger mr-10" >
   </span>
+
 
 </div>

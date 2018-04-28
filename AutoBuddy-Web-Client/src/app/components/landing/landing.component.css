@@ -91,6 +91,7 @@ main {
   background-size: cover;
   background-image: url("/assets/images/zigzag-road-crop.png");
   height: 100vh;
+  border-bottom:1px solid lightgrey;
 }
 
 .open-sans {
@@ -142,7 +143,7 @@ main {
 /* About Page */
 
 .about{
-  background:black;
+  background:grey;
   margin:auto 0;
 
 }
@@ -161,6 +162,7 @@ main {
   padding-bottom:10vh;
 }
 
-.aboutTwo {
-  background:lightgrey;
+
+.row {
+  margin:0;
 }

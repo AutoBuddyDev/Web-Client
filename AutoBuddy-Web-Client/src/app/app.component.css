@@ -54,3 +54,18 @@
     position: sticky;
     z-index: 2;
 }
+.navbar-toggler-icon{
+  background-image:url("../assets/images/menu.png");
+  background-size: 7vh;
+}
+/* footer */
+
+.footer{
+  background:black;
+  color:white;
+  position: static;
+}
+.footer p{
+  margin-bottom:0;
+
+}

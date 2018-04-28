@@ -22,11 +22,9 @@
   padding:0;
 }
 #navigationTabs{
-  border-left:1px solid lightgrey;
-  border-bottom:1px solid lightgrey;
-  height:80vw;
-  padding:0;
 
+  padding:0;
+  height:80vh;
 }
 /* repair table */
 
@@ -110,7 +108,7 @@ p{
 #progressbar{
   position: relative;
   right: 50vw;
-  top:80vh;
+  top:75vh;
 }
 
 /* css for choosing hot spot on car from form */
