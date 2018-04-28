@@ -4,7 +4,7 @@ import { Injectable, Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RepositoryService } from './repository.service';
 import { User } from './models/user';
-
+import {Garage } from './models/garage'
 @Injectable()
 export class UserRepository extends RepositoryService<User> {
 
@@ -25,6 +25,13 @@ export class UserRepository extends RepositoryService<User> {
   public signup(user: User): Observable<User> {
     const url = this.endPoint + '/addUser';
     return this.httpClient.post(url, user, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+
+  public signupGarage(garage: Garage): Observable<Garage> {
+    const url = this.endPoint + '/addGarage';
+    return this.httpClient.post(url, garage, this.httpOptions).pipe(
       catchError(this.handleException)
     );
   }

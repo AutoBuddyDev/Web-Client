@@ -23,7 +23,49 @@
   background: #2C7043;
   color: #FFFFFF;
 }
-/* 
+/*
 body {
   background-image: url("/assets/images/zigzag-road-crop.png");
 } */
+
+.card {
+  background-color: #FAB840;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.round-edges {
+  border-radius: 25px;
+}
+
+input, textarea {
+  flex: 1;
+  padding: 0.7em;
+  border: none;
+  border-bottom: 0.1em solid white;
+  border-radius: 0.2em;
+  background-color: #FAB840;
+  color: white;
+}
+
+textarea {
+  border: 0.1em solid white;
+
+}
+input:focus, textarea:focus {
+  background-color:  #FAB840;
+  color: white;
+}
+
+input::placeholder, textarea::placeholder {
+  color: white;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
