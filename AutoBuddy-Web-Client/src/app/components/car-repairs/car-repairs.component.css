@@ -18,6 +18,15 @@
   display: inline-block;
 }
 
+.round-edges {
+  border-radius: 25px !important;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
 .container{
   padding:0;
 }
