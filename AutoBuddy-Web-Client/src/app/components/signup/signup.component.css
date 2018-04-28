@@ -3,15 +3,19 @@
 }
 .signup-aligner-item {
   min-height: 30%;
-  width: 30%;
+  width: 34%;
 }
 
 .signup-card {
   background: #fafafa;
+  max-height: 80vh;
+  overflow-y: auto;
 }
+
 
 .signup-card-body {
   padding-bottom: 0%;
+
 }
 
 .submit-signup-btn {
@@ -24,8 +28,11 @@
   color: #FFFFFF;
 }
 
-.card {
+.orange {
   background-color: #FAB840;
+}
+
+.card {
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -36,7 +43,7 @@
 }
 
 .round-edges {
-  border-radius: 25px;
+  border-radius: 25px !important;
 }
 
 /*  Trying input style */
@@ -66,4 +73,18 @@ input::placeholder, textarea::placeholder {
 
 .open-sans {
   font-family: 'Open Sans', sans-serif;
+}
+
+/* Scrollbar background color  */
+
+/* ::-webkit-scrollbar {
+  background-color: #FAB840;
+}
+ */
+
+::-webkit-scrollbar-thumb {
+ background-color: black;
+  width: 1px;
+  margin-left: 5px;
+  padding-left: 5px;
 }
