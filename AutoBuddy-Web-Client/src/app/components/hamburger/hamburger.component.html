@@ -1,5 +1,5 @@
-<div class="wrapper">
-    <div (mouseleave)="openNav($event)" class="contents">
+<div class="wrapper" (mouseleave)="openNav($event)" >
+    <div class="contents">
         <div class="inner">
             <button  [class]="nav"  [routerLink]="['/garage']"><span class = "mask"></span>Garage </button>
             <button    [class]="nav"type="submit" [routerLink]="['/signup']"><span class = "mask"></span>Signup</button>

@@ -143,26 +143,49 @@ main {
 /* About Page */
 
 .about{
-  background:grey;
+  background:white;
   margin:auto 0;
+  border-bottom:1px solid lightgrey;
 
 }
-.about .col-3{
-  padding-top:10vh;
-  padding-bottom:10vh;
+.about .col-md-12{
+  text-align: center;
+  margin-top:5vh;
+}
+.about .col-md-4{
+  padding-top:5vh;
+  padding-bottom:5vh;
+
 }
 
-.about .col-3 p{
-  color:#fabc4c;
+.about .col-md-4 p{
+  color:black;
   margin:0;
+  text-align: justify;
 }
 .about .image{
   width:20vw;
   padding-top:10vh;
   padding-bottom:10vh;
 }
+.aboutTwo{
+  background: white;
+}
 
+.about .row {
+  margin-bottom:0;
+  margin-left:5vw;
+  margin-right:5vw;
+}
 
-.row {
-  margin:0;
+.aboutTwo .row{
+  margin-left:5vw;
+  margin-right:5vw;
+  margin-bottom:0;
+}
+.card{
+  transition: all .2s linear;
+}
+.card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
