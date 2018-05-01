@@ -8,7 +8,7 @@ import {Garage } from './models/garage'
 @Injectable()
 export class UserRepository extends RepositoryService<User> {
 
-  protected endPoint = 'http://ec2-18-188-115-1.us-east-2.compute.amazonaws.com:3000';
+  protected endPoint = 'http://ec2-18-221-98-201.us-east-2.compute.amazonaws.com:3000';
 
   constructor(protected httpClient: HttpClient) {
     super(httpClient);

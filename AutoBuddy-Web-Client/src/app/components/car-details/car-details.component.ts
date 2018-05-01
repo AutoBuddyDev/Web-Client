@@ -20,9 +20,9 @@ export class CarDetailsComponent implements OnInit {
   ngOnInit() {
     this.date = new Date();
     this.car = new Car();
-    this.car.make="Mercedes";
-    this.car.model="SLK-250";
-    this.car.color="White";
+    this.car.vehicle_make="Mercedes";
+    this.car.vehicle_model="SLK-250";
+    this.car.vehicle_color="White";
     this.car.checkedIn=this.date;
     this.car.completedRepairs=[];
     this.car.inProgressRepairs=[];

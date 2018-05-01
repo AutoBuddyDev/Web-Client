@@ -10,7 +10,6 @@ export class HamburgerComponent implements OnInit {
   openNav($event){
 
     this.nav = $event.type == 'mouseenter' ? 'btn active' : 'btn';
-    console.log('help');
   }
   constructor() { }
 
