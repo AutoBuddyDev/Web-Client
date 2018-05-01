@@ -24,7 +24,7 @@ export const CAR_ROUTES: Route[] = [
     component: GarageComponent
   },
   {
-    path: 'car',
+    path: 'car/:vehicle_id',
     component: CarDetailsComponent
   },
   {

@@ -59,6 +59,7 @@ export class CarRepairsComponent implements OnInit {
     this.repaired=true;
     this.noteVisible=[];
     this.progress=0;
+
   }
   addPart() {
     this.newRepair.parts.push(this.part);

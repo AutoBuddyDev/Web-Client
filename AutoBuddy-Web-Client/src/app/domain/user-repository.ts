@@ -35,4 +35,10 @@ export class UserRepository extends RepositoryService<User> {
       catchError(this.handleException)
     );
   }
+  public getUserInfo(): Observable<User> {
+    const url = this.endPoint + '/showUserInfo';
+    return this.httpClient.get(url,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
 }

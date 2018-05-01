@@ -30,11 +30,18 @@ export class CarRepository extends RepositoryService<Car> {
     );
   }
 
-  public showVehicle(): Observable<Car> {
+  public showVehicle(): Observable<Car[]> {
     const url = this.endPoint + '/showVehicle';
     return this.httpClient.get(url, this.httpOptions).pipe(
       catchError(this.handleException)
     );
+  }
+  public showOneVehicle(position:number): Observable<Car>{
+    const url = this.endPoint + '/showOneVehicle';
+    console.log(position);
+    return this.httpClient.get(`${url}/${position}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
   }
 
 }

@@ -1,3 +1,4 @@
+import { UserRepository } from '../../domain/user-repository';
 import { Garage } from './../../domain/models/garage';
 import { CarRepository } from "./../../domain/car-repository";
 import { Component, OnInit, Input } from "@angular/core";
@@ -27,12 +28,14 @@ export class GarageComponent implements OnInit {
   public isLoggedIn: boolean;
   public orders: Part[] = [];
   public garage_id = 1;
+  public user;
   @Input() public cars: Car[];
 
   constructor(
     private carRepository: CarRepository,
     private activedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userRepository: UserRepository
   ) {}
 
   private addCar() {
@@ -50,7 +53,6 @@ export class GarageComponent implements OnInit {
     this.carRepository.addCar(car).subscribe(res => {
         console.log('res: ', res);
         this.newCar.checkInDate = Date.now();
-        this.newCar.id = Math.floor(Math.random() * 25) + 1;
         this.newCar.progress = Math.floor(Math.random() * 99) + 1;
         this.cars.push(this.newCar);
         console.log(this.newCar);
@@ -62,9 +64,20 @@ export class GarageComponent implements OnInit {
     this.showBg = false;
     this.isLoggedIn = true;
     this.carRepository.showVehicle().subscribe(res => {
-      console.log('res: ', res[0]);
+      console.log('res: ', res);
       this.cars = res;
+      for( let x = 0;x<res.length;x++){
+        this.cars[x].position=x;
+      }
+      console.log(this.cars)
       // this.cars = res;
     });
+    this.userRepository.getUserInfo().subscribe(user=>{
+      console.log('user:', user[0]);
+      this.user = user[0];
+
+    })
+
+
   }
 }

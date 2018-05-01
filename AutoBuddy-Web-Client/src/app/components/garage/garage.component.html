@@ -1,34 +1,35 @@
-<div class="container">
+<div class="container border dashboard mt-2 mb-2">
   <div class="row">
-
     <div class="col-md-12" >
-      <h1 class="d-inline">Cars</h1>
-      <button type="button" class="btn btn-success d-inline ml-2" data-toggle="modal" data-target="#exampleModal" >Add Car</button><br><br>
+      <h1 class="d-inline">Garage</h1>
+      <button type="button" class="float-right btn btn-success d-inline ml-2" data-toggle="modal" data-target="#exampleModal" >Add Car</button><br><br>
+      <div class="clearfix">
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4" *ngFor="let car of cars">
       <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
-      <a class="no-decoration" routerLink="/car">
-      <div class="card garage-card">
+
+      <div [routerLink]="'/car/'+car.position" class="card garage-card">
         <div class="card-body">
-          <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
+          <h5 class="card-title">{{ car.vehicle_make }} {{ car.vehicle_model }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
           <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
-          <p class="card-text">Service Manager: {{ car.manager }}</p>
-          <p class="card-text">VIN: {{ car.vin }}</p>
-          <p class="card-text">Owner: {{ car.owner }}</p>
+          <p class="card-text">Service Manager: {{ car.vehicle_manager }}</p>
+          <p class="card-text">VIN: {{ car.vehicle_vin }}</p>
+          <p class="card-text">Owner: {{ user.full_name }}</p>
           <p class="card-text" style="text-align: center;">Progress</p>
           <div class="progress" style="margin-bottom:5%">
             <div class="progress-bar" role="progressbar" [style.width]="car.progress + '%'" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
       </div>
-    </a>
     </div>
   </div> <!--END ROW -->
+  <app-part-orders [parts]="orders"></app-part-orders>
+
 </div>
-<app-part-orders [parts]="orders"></app-part-orders>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

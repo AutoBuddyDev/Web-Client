@@ -7,12 +7,14 @@ export class Car {
   vehicle_owner?: string;
   vehicle_color?: string;
   vehicle_init_diagnosis?: string;
+  vehicle_manager?:string;
   checkedIn?: Date;
   completedRepairs?: Repair[];
   inProgressRepairs?: Repair[];
   repairs?: number;
   garage_id: number;
   checkInDate?: number;
-  id?: number;
+  vehicle_id?: number;
   progress?: number;
+  position?:number;
 }

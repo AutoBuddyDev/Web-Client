@@ -1,8 +1,10 @@
+import { ActivatedRoute } from '@angular/router';
 import { Repair } from './../../domain/models/repair';
 import { Car } from './../../domain/models/car';
 import { Component, OnInit } from '@angular/core';
 import { GetProgressService } from '../../services/get-progress.service';
 import { HttpModule } from '@angular/http';
+import { CarRepository } from '../../domain/car-repository';
 
 
 @Component({
@@ -12,7 +14,11 @@ import { HttpModule } from '@angular/http';
 })
 export class CarDetailsComponent implements OnInit {
   public car: Car;
-  constructor() { }
+  constructor(
+    private activedRoute: ActivatedRoute,
+    private carRepository: CarRepository
+
+  ) { }
   public date: Date;
   public progress: number;
   public garageName: string;
@@ -20,18 +26,21 @@ export class CarDetailsComponent implements OnInit {
   ngOnInit() {
     this.date = new Date();
     this.car = new Car();
-    this.car.vehicle_make="Mercedes";
-    this.car.vehicle_model="SLK-250";
-    this.car.vehicle_color="White";
-    this.car.checkedIn=this.date;
+
     this.car.completedRepairs=[];
     this.car.inProgressRepairs=[];
+
     this.car.repairs = this.car.completedRepairs.length+this.car.inProgressRepairs.length;
     this.progress=(this.car.inProgressRepairs.length/this.car.repairs)*100;
     this.garageName="Bob's Garage";
     this.favorited=false;
     // this.getProgress();
 
+    this.activedRoute.paramMap.subscribe((params: any) => {
+      this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
+        this.car = data;
+      });
+    });
   }
 
   public favorite(name:string){
