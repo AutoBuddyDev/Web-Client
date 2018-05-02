@@ -23,26 +23,43 @@ export class CarDetailsComponent implements OnInit {
   public progress: number;
   public garageName: string;
   public favorited:boolean;
+  public repairs: any;
+  public inProgressRepairs =[];
+  public completedRepairs = [];
   ngOnInit() {
     this.date = new Date();
     this.car = new Car();
-
-    this.car.completedRepairs=[];
-    this.car.inProgressRepairs=[];
-
-    this.car.repairs = this.car.completedRepairs.length+this.car.inProgressRepairs.length;
-    this.progress=(this.car.inProgressRepairs.length/this.car.repairs)*100;
-    this.garageName="Bob's Garage";
-    this.favorited=false;
-    // this.getProgress();
-
     this.activedRoute.paramMap.subscribe((params: any) => {
       this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
-        this.car = data;
+        this.car = data[0];
+        console.log(this.car);
+        console.log(params);
       });
     });
-  }
+    this.activedRoute.paramMap.subscribe((params: any) => {
+      this.carRepository.showRepairsForUser(params.get('vehicle_id')).subscribe(data => {
+        this.repairs = data;
+        this._sortRepairs(this.repairs);
 
+      });
+    });
+
+    this.repairs = this.completedRepairs.length+this.inProgressRepairs.length;
+    this.progress=(this.inProgressRepairs.length/this.repairs)*100;
+    this.garageName="Bob's Garage";
+    this.favorited=false;
+
+  }
+  private _sortRepairs(repairs: Repair[]){
+    for(var x = 0; x< repairs.length;x++){
+      if(repairs[x].repair_status=="not repaired"){
+        this.inProgressRepairs.push(repairs[x])
+      }
+      else{
+        this.completedRepairs.push(repairs[x])
+      }
+    }
+  }
   public favorite(name:string){
     if(!this.favorited){
       this.favorited=true;

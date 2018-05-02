@@ -36,10 +36,15 @@ export class CarRepository extends RepositoryService<Car> {
       catchError(this.handleException)
     );
   }
-  public showOneVehicle(position:number): Observable<Car>{
+  public showOneVehicle(vehicle_id:number): Observable<Car>{
     const url = this.endPoint + '/showOneVehicle';
-    console.log(position);
-    return this.httpClient.get(`${url}/${position}`,this.httpOptions).pipe(
+    return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
+  public showRepairsForUser(vehicle_id:number): Observable<Car>{
+    const url = this.endPoint + '/showRepairsForUser';
+    return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
       catchError(this.handleException)
     )
   }
