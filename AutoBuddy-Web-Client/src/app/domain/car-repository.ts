@@ -22,6 +22,13 @@ export class CarRepository extends RepositoryService<Car> {
     );
   }
 
+  public deleteCar(car: Car): Observable<Car> {
+    const url = this.endPoint + '/deleteVehicle' + '/' + car.vehicle_id;
+    return this.httpClient.put(url, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+
   public addPart(car: Car): Observable<Car> {
     const url = this.endPoint + '/addVehicle';
     console.log('car: ', car);

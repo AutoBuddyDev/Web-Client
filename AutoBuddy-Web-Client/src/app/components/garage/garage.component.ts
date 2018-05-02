@@ -77,7 +77,26 @@ export class GarageComponent implements OnInit {
       this.user = user[0];
 
     })
+  }
 
+  public open(e, car){
+    e.stopPropagation();
+    this.deleteCar(car);
+  }
+
+  private deleteCar(car) {
+    this.carRepository.deleteCar(car).subscribe(res => {
+      this.carRepository.showVehicle().subscribe(res => {
+        console.log('res: ', res);
+        this.cars = res;
+        for( let x = 0;x<res.length;x++){
+          this.cars[x].position=x;
+        }
+        console.log(this.cars)
+        // this.cars = res;
+      });
+      console.log('res: ', res);
+    });
 
   }
 }

@@ -13,6 +13,9 @@
 
       <div [routerLink]="'/car/'+car.position" class="card garage-card">
         <div class="card-body">
+          <button type="button" class="close" aria-label="Close" style="color: red;" (click)="open($event, car)">
+            <span aria-hidden="true">&times;</span>
+          </button>
           <h5 class="card-title">{{ car.vehicle_make }} {{ car.vehicle_model }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Checked in: {{ car.checkInDate | date }}</h6>
           <img class="card-img car-card-image" src="../../assets/images/car-outline.png" alt="Card image">
