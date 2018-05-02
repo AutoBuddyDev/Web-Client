@@ -1,3 +1,4 @@
+import { GarageRepository } from './../../domain/garage-repository';
 import { ActivatedRoute } from '@angular/router';
 import { Repair } from './../../domain/models/repair';
 import { Car } from './../../domain/models/car';
@@ -16,12 +17,13 @@ export class CarDetailsComponent implements OnInit {
   public car: Car;
   constructor(
     private activedRoute: ActivatedRoute,
-    private carRepository: CarRepository
+    private carRepository: CarRepository,
+    private garageRepository: GarageRepository
 
   ) { }
   public date: Date;
   public progress: number;
-  public garageName: string;
+  public garageName: String;
   public favorited:boolean;
   public repairs: any;
   public inProgressRepairs =[];
@@ -32,8 +34,10 @@ export class CarDetailsComponent implements OnInit {
     this.activedRoute.paramMap.subscribe((params: any) => {
       this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
         this.car = data[0];
-        console.log(this.car);
-        console.log(params);
+        this.garageRepository.getGarageByUser(this.car.garage_id).subscribe(dataTwo=> {
+          console.log(dataTwo);
+          this.garageName=dataTwo[0].garage_name;
+        })
       });
     });
     this.activedRoute.paramMap.subscribe((params: any) => {
@@ -44,9 +48,9 @@ export class CarDetailsComponent implements OnInit {
       });
     });
 
+
     this.repairs = this.completedRepairs.length+this.inProgressRepairs.length;
     this.progress=(this.inProgressRepairs.length/this.repairs)*100;
-    this.garageName="Bob's Garage";
     this.favorited=false;
 
   }
