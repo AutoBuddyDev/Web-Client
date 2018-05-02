@@ -16,12 +16,27 @@ export class GarageRepository extends RepositoryService<Repair> {
   }
 
 
-  // Add car
+  // get garage by id
   public getGarageByUser(garageID: number): Observable<User> {
     const url = this.endPoint + "/showGarageForUser";
 
     return this.httpClient
       .get(`${url}/${garageID}`, this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
+
+  public favoriteGarage(garageID: number): Observable<User> {
+    const url = this.endPoint + "/favorite";
+    console.log(garageID);
+    return this.httpClient
+      .put(url, garageID, this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
+  public unfavoriteGarage(garageID: number): Observable<User> {
+    const url = this.endPoint + "/unfavorite";
+
+    return this.httpClient
+      .put(url, garageID, this.httpOptions)
       .pipe(catchError(this.handleException));
   }
 

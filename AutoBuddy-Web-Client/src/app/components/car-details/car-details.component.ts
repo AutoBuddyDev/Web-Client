@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetProgressService } from '../../services/get-progress.service';
 import { HttpModule } from '@angular/http';
 import { CarRepository } from '../../domain/car-repository';
+import { UserRepository } from '../../domain/user-repository';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class CarDetailsComponent implements OnInit {
   constructor(
     private activedRoute: ActivatedRoute,
     private carRepository: CarRepository,
-    private garageRepository: GarageRepository
+    private garageRepository: GarageRepository,
+    private userRepository: UserRepository
 
   ) { }
   public date: Date;
@@ -28,13 +30,16 @@ export class CarDetailsComponent implements OnInit {
   public repairs: any;
   public inProgressRepairs =[];
   public completedRepairs = [];
+  public user;
   ngOnInit() {
     this.date = new Date();
-    this.car = new Car();
     this.activedRoute.paramMap.subscribe((params: any) => {
       this.carRepository.showOneVehicle(params.get('vehicle_id')).subscribe(data => {
+        console.log('this is the car');
+        console.log(data);
         this.car = data[0];
         this.garageRepository.getGarageByUser(this.car.garage_id).subscribe(dataTwo=> {
+          console.log('garage');
           console.log(dataTwo);
           this.garageName=dataTwo[0].garage_name;
         })
@@ -47,11 +52,20 @@ export class CarDetailsComponent implements OnInit {
 
       });
     });
+    this.userRepository.getUserInfo().subscribe(user=>{
+      this.user=user[0]
+      if(this.user.favorite_garage){
+        this.favorited=true;
+      }
+      else{
+        this.favorited=false;
+      }
+    })
 
 
     this.repairs = this.completedRepairs.length+this.inProgressRepairs.length;
     this.progress=(this.inProgressRepairs.length/this.repairs)*100;
-    this.favorited=false;
+
 
   }
   private _sortRepairs(repairs: Repair[]){
@@ -64,13 +78,34 @@ export class CarDetailsComponent implements OnInit {
       }
     }
   }
-  public favorite(name:string){
+  public favorite(){
     if(!this.favorited){
-      this.favorited=true;
+      console.log(this.car.garage_id);
+      this.garageRepository.favoriteGarage(this.car.garage_id).subscribe(res => {
+        console.log("res" + res );
+        this.favorited=true;
+
+      })
     }
     else{
-      this.favorited=false;
+      this.garageRepository.unfavoriteGarage(this.car.garage_id).subscribe(res => {
+        console.log("res" + res );
+        this.favorited=false;
+      })
     }
   }
+
+  // onMarkComplete(did: boolean){
+  //   if(did){
+  //     console.log("updated repairs again");
+  //     this.activedRoute.paramMap.subscribe((params: any) => {
+  //       this.carRepository.showRepairsForUser(params.get('vehicle_id')).subscribe(data => {
+  //         this.repairs = data;
+  //         this._sortRepairs(this.repairs);
+
+  //       });
+  //     });
+  //   }
+  // }
 
 }

@@ -1,6 +1,8 @@
+import { GarageRepository } from './../../domain/garage-repository';
+import { CarRepository } from './../../domain/car-repository';
 import { Car } from "../../domain/models";
 import { trigger, style, animate, transition } from "@angular/animations";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Repair } from "../../domain/models/repair";
 import { RepairRepository } from "../../domain/repair-repository";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -36,11 +38,13 @@ export class CarRepairsComponent implements OnInit {
   public crosshairCursor: boolean;
   public crosshairX: number;
   public crosshairY: number;
+  @Output() onMarkComplete= new EventEmitter<boolean>();
 
   constructor(
     private repairRepository: RepairRepository,
     private activedRoute: ActivatedRoute,
     private router: Router
+
   ) {}
 
   ngOnInit() {
@@ -92,6 +96,8 @@ export class CarRepairsComponent implements OnInit {
     this.repairRepository.addRepair(this.newRepair).subscribe(res => {
       console.log("res: ", res);
 
+
+      // Resetting info
       this.crosshairCursor = false;
       this.progress =
         100 *
@@ -101,6 +107,7 @@ export class CarRepairsComponent implements OnInit {
         parts: []
       };
       this.part = "";
+      // this.router.navigateByUrl
     });
     // End of api call
   }
@@ -119,7 +126,10 @@ export class CarRepairsComponent implements OnInit {
       }
     }
     this.inProgressRepairs[currentId].repair_status="repaired";
+    console.log(this.inProgressRepairs[currentId])
     this.repairRepository.updateRepair(this.inProgressRepairs[currentId]).subscribe(data => {
+
+
       this.inProgressRepairs[currentId].completed = true;
       this.completeRepairs.push(this.inProgressRepairs[currentId]);
       this.inProgressRepairs.splice(currentId, 1);
@@ -127,6 +137,9 @@ export class CarRepairsComponent implements OnInit {
         100 *
         this.completeRepairs.length /
         (this.completeRepairs.length + this.inProgressRepairs.length);
-    });
+
+      });
+      // this.onMarkComplete.emit(true);
+
   }
 }

@@ -1,6 +1,7 @@
 <button type="button" class="btn btn-success text-dark" data-toggle="modal" data-target="#exampleModalLong">
   Add Repair
 </button>
+
 <div *ngFor = "let bubble of inProgressRepairs" class = "circle" [style.left]="bubble.repair_x_cord + 'px'" [style.top]="bubble.repair_y_cord + 'px'" [style.background]="'red'">
 
 </div>
@@ -29,7 +30,7 @@
               name="title" [(ngModel)]="newRepair.repair_title" value="repair.repair_title" placeholder="Repair Title">
           </div>
 
-          <div class="ml-1 row">
+          <div class="ml-1 mt-2 row">
             <input type="number" class="form-control d-block col-md-8" id="cost"
             name="cost" [(ngModel)]="newRepair.cost" value="repair.cost" placeholder="Cost">
           </div>
