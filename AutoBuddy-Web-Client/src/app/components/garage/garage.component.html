@@ -11,7 +11,7 @@
     <div class="col-md-4" *ngFor="let car of cars">
       <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
 
-      <div [routerLink]="'/car/'+car.position" class="card garage-card">
+      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card">
         <div class="card-body">
           <button type="button" class="close" aria-label="Close" style="color: red;" (click)="open($event, car)">
             <span aria-hidden="true">&times;</span>

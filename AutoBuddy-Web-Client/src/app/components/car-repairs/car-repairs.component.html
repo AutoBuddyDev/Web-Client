@@ -1,13 +1,12 @@
 <button type="button" class="btn btn-success text-dark" data-toggle="modal" data-target="#exampleModalLong">
   Add Repair
 </button>
-<div *ngFor = "let bubble of inProgressRepairs" class = "circle" [style.left]="bubble.x + 'px'" [style.top]="bubble.y + 'px'" [style.background]="'red'">
+<div *ngFor = "let bubble of inProgressRepairs" class = "circle" [style.left]="bubble.repair_x_cord + 'px'" [style.top]="bubble.repair_y_cord + 'px'" [style.background]="'red'">
 
 </div>
-<div *ngFor = "let bubble of completeRepairs" class = "circle" [style.left]="bubble.x + 'px'" [style.top]="bubble.y + 'px'" [style.background]="'green'">
+<div *ngFor = "let bubble of completeRepairs" class = "circle" [style.left]="bubble.repair_x_cord + 'px'" [style.top]="bubble.repair_y_cord + 'px'" [style.background]="'green'">
 
 </div>
-
 <app-progress id="progressbar" [progress]="progress"></app-progress>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -27,8 +26,14 @@
           <!-- Title of repair -->
           <div class="ml-1 row">
               <input type="text" class="form-control d-block col-md-8" id="title"
-              name="title" [(ngModel)]="newRepair.title" value="repair.title" placeholder="Repair Title">
+              name="title" [(ngModel)]="newRepair.repair_title" value="repair.repair_title" placeholder="Repair Title">
           </div>
+
+          <div class="ml-1 row">
+            <input type="number" class="form-control d-block col-md-8" id="cost"
+            name="cost" [(ngModel)]="newRepair.cost" value="repair.cost" placeholder="Cost">
+          </div>
+
 
           <!-- Parts -->
           <div class="input-group ml-1 mb-2 mr-sm-2 mt-2 row">
@@ -44,7 +49,7 @@
           </div>
 
           <!-- Notes -->
-          <textarea placeholder="Enter Notes"class="form-control ml-1" id="repair_notes" rows="3" name="repair_notes" [(ngModel)]="newRepair.notes"></textarea>
+          <textarea placeholder="Enter Notes"class="form-control ml-1" id="repair_notes" rows="3" name="repair_notes" [(ngModel)]="newRepair.repair_notes"></textarea>
 
           <!-- Choose where repair is located-->
           <button (click) = "crosshairCursor = true"class = "btn btn-primary ml-1 mt-2">Choose location of repair</button>
@@ -77,13 +82,13 @@
         <tbody >
           <tr *ngFor="let repair of inProgressRepairs; let i =index"[attr.date-index]="i">
             <td>
-              <p class = "d-inline-block">{{repair.title}}</p>
-              <input  (change)="markComplete(repair.id)" type= "checkbox"/>
+              <p class = "d-inline-block">{{repair.repair_title}}</p>
+              <input  (change)="markComplete(repair.repair_id)" type= "checkbox"/>
               <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
               <div id="note" *ngIf="noteVisible[i]" >
-                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
+                <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.repair_date }}</span>
                 </span>
-                <p>{{repair.notes}}</p>
+                <p>{{repair.repair_notes}}</p>
               </div>
             </td>
             <div class="clearfix"></div>
@@ -98,12 +103,12 @@
         <tbody>
           <tr *ngFor="let repair of completeRepairs; let i =index"[attr.date-index]="i">
             <td>
-              <p class = "d-inline-block">{{repair.title}}</p>
+              <p class = "d-inline-block">{{repair.repair_title}}</p>
               <img (click)="noteVisible[i] = !noteVisible[i]" class="d-inline-block downArrow" src="assets/images/downArrow.png">
               <div id="note" *ngIf="noteVisible[i]" >
                 <span class="underline">Note <span style="float:right;margin-right:1vw" class="underline d-inline ">{{repair.date | date: 'shortDate'}}</span>
                 </span>
-                <p>{{repair.notes}}</p>
+                <p>{{repair.repair_notes}}</p>
               </div>
             </td>
             <div class="clearfix"></div>
