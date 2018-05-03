@@ -68,7 +68,7 @@
       <button *ngIf="!garageUser" type="button" class="mb-2 d-inline btn btn-success text-white" data-toggle="modal" data-target="#addPart">
         Order Part
       </button>
-      <table *ngIf="parts.length"class="table" id="ordersTable">
+      <table *ngIf="parts.length > 0"class="table" id="ordersTable">
         <thead>
           <tr>
             <th scope="col">Part Name</th>
