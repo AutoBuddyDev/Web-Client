@@ -31,24 +31,13 @@
 
 #bg-body {
   background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(#ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient( #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
   overflow: scroll;
   background-size: cover;
   /* background-image: url("/assets/images/zigzag-road-crop.png"); */
-  height: 100vh;
-}
-
-#no-bg-body {
-  background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background-repeat: no-repeat;
-  overflow: hidden;
-  background-size: cover;
-  /* background-image: url("/assets/images/zigzag-road-crop.png"); */
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .open-sans {
@@ -123,4 +112,12 @@
 
 .no-margin-top {
   margin-top: 0;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.text-bottom-align {
+  vertical-align: text-bottom;
 }

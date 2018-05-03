@@ -1,7 +1,11 @@
 import { GarageRepository } from './../../domain/garage-repository';
 import { Component, OnInit, Input } from '@angular/core';
-import { Part } from '../../domain/models/part'
+import { Part } from '../../domain/models/part';
+import { Car } from "../../domain/models/car";
 import { PartRepository } from '../../domain/part-repository';
+import { UserRepository } from "../../domain/user-repository";
+import { CarRepository } from "./../../domain/car-repository";
+
 @Component({
   selector: 'app-part-orders',
   templateUrl: './part-orders.component.html',
@@ -10,19 +14,45 @@ import { PartRepository } from '../../domain/part-repository';
 export class PartOrdersComponent implements OnInit {
   public newPart:Part;
   public id:number;
+  public type: string;
   public edit:boolean[];
+  public orders: Part[] = [];
   @Input()
   public userType:string;
   @Input()
   public parts: Part[];
+  @Input() public cars: Car[];
   constructor(private partRepository: PartRepository,
     private garageRepository: GarageRepository,
+    private userRepository: UserRepository,
+    private carRepository: CarRepository,
   ) { }
 
   ngOnInit() {
     this.newPart = {}
     this.id=0;
     this.edit=[];
+
+  this.userRepository.getUserType().subscribe(data => {
+    console.log('data:', data);
+    this.type = data.type;
+    if (data.type === 'garage') {
+      this.carRepository.showGarages().subscribe(res => {
+        console.log('cars in garage: ', res);
+        this.cars = res.vehicles;
+      });
+    }
+    if (data.type === 'customer') {
+      this.carRepository.showVehicle().subscribe(res => {
+        console.log('cars: ', res);
+        this.cars = res;
+        // this.cars = res;
+      });
+      this.partRepository.showPartsForUser().subscribe(data =>{
+        this.orders = data;
+      })
+    }
+  });
 
     this.partRepository.showPartsForUser().subscribe(data =>{
       console.log("parts ",data )
