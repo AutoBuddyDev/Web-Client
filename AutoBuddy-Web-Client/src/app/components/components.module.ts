@@ -9,16 +9,18 @@ import { CAR_ROUTES } from './car-routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarRepairsComponent } from './car-repairs/car-repairs.component';
+
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(CAR_ROUTES)
+    RouterModule.forChild(CAR_ROUTES),
+    ReactiveFormsModule
   ],
   declarations: [
     // components go here

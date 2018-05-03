@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FilterCompletedRepairsPipe } from './pipes/filter-completed-repairs.pipe';
 import { HamburgerComponent } from './components/hamburger/hamburger.component';
@@ -27,7 +27,8 @@ import { GarageRepository } from './domain/garage-repository';
     ]),
     ComponentsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserRepository,

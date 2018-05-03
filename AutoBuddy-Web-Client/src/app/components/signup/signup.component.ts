@@ -1,19 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRepository } from '../../domain/user-repository';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, Validators, EmailValidator } from '@angular/forms';
+import {
+    EmailValidator,
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent implements OnInit {
 
   constructor(
     private userRepository: UserRepository,
     private activedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
+
   public full_name: string;
   public address: string;
   public emailS: string;
@@ -26,7 +37,10 @@ export class SignupComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
+
+
 
 
 
@@ -48,10 +62,10 @@ export class SignupComponent implements OnInit {
       favorite_garage: 0
     };
 
-    // this.userRepository.signup(user).subscribe(res => {
-    //   // console.log('res: ', res);
-    //   this.router.navigateByUrl('login');
-    // });
+    this.userRepository.signup(user).subscribe(res => {
+      // console.log('res: ', res);
+      this.router.navigateByUrl('login');
+    });
   }
 
   public submitSignupGarage() {
