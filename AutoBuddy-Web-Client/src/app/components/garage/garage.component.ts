@@ -31,6 +31,7 @@ export class GarageComponent implements OnInit {
   public garageNameAppointment: string;
   public garageIdAppointment: number;
   public carAdded: Car;
+  private garageId: number;
   @Input() public cars: Car[];
 
   constructor(
@@ -97,9 +98,9 @@ export class GarageComponent implements OnInit {
           this.cars = res;
           // this.cars = res;
         });
-        this.partRepository.showPartsForUser().subscribe(data =>{
-          this.orders = data;
-        })
+        this.partRepository.showPartsForUser().subscribe(parts => {
+          this.orders = parts;
+        });
       }
     });
     this.userRepository.getUserInfo().subscribe(user => {
@@ -116,10 +117,11 @@ export class GarageComponent implements OnInit {
     e.stopPropagation();
     this.deleteCar(car);
   }
-  public addCarToGarage(garageId) {
+  public addCarToGarage() {
+    console.log('garageId: ', this.garageId);
     console.log('this.carAdded: ', this.carAdded);
     const object = {
-      'garage_id': garageId,
+      'garage_id': this.garageId,
       'vehicle_id': this.carAdded.vehicle_id
     };
 
@@ -133,6 +135,19 @@ export class GarageComponent implements OnInit {
     console.log('garageId: ', garageId);
     this.garageNameAppointment = garageName;
     this.garageIdAppointment = garageId;
+  }
+
+  setNewCar(carMake) {
+    let car = {};
+
+    // Find the corresponding car object
+    this.cars.forEach(carObj => {
+      if (carObj.vehicle_make === carMake) {
+        this.carAdded = carObj;
+      }
+    });
+
+    console.log('car selected: ', this.carAdded);
   }
 
   submitAppointment() {
@@ -160,13 +175,18 @@ export class GarageComponent implements OnInit {
     console.log('garage_id: ', appointment.garage_id)
 
     this.appointmentRepository.scheduleAppointment(appointment).subscribe(res => {
-      if (res === false) {
+      if (res.status === 0) {
         alert('That time is taken! Please select another.');
       }  else {
-        console.log('res: ', res)
-        alert('Appointment created');
+        console.log('res: ', res);
+        alert('See you then!');
       }
     });
+  }
+
+  garageSelected(garageId) {
+    console.log('garageId: ', garageId)
+    this.garageId = garageId;
   }
 
   private deleteCar(car) {
