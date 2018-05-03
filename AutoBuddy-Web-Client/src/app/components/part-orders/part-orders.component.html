@@ -68,6 +68,7 @@
       <button *ngIf="!garageUser" type="button" class="mb-2 d-inline btn btn-success text-white" data-toggle="modal" data-target="#addPart">
         Order Part
       </button>
+      <h1 *ngIf="!parts.length"> You have no parts ordered</h1>
       <table *ngIf="parts.length"class="table" id="ordersTable">
         <thead>
           <tr>
