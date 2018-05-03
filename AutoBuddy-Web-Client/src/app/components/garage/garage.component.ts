@@ -103,6 +103,16 @@ export class GarageComponent implements OnInit {
     e.stopPropagation();
     this.deleteCar(car);
   }
+  public addCarToGarage(){
+    let object = {
+      "garage_id": "enter garage id",
+      "vehicle_id":"enter vehicle id"
+    }
+    this.carRepository.addCarToGarage(object).subscribe(data => {
+      console.log("data: ",data);
+
+    })
+  }
 
   private deleteCar(car) {
     this.carRepository.deleteCar(car).subscribe(res => {

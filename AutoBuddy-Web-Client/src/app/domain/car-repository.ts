@@ -13,7 +13,13 @@ export class CarRepository extends RepositoryService<Car> {
   constructor(protected httpClient: HttpClient) {
     super(httpClient);
   }
+  public addCarToGarage(carInfo: any): Observable<any>{
+    const url = this.endPoint + '/addCarToGarage';
 
+    return this.httpClient.put(url,carInfo, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
   public addCar(car: Car): Observable<Car> {
     const url = this.endPoint + '/addVehicle';
     console.log('car: ', car);
