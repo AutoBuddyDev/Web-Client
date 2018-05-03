@@ -14,7 +14,7 @@ import { CarRepository } from "./../../domain/car-repository";
 export class PartOrdersComponent implements OnInit {
   public newPart:Part;
   public id:number;
-  public type: string;
+  public garageUser:boolean;
   public edit:boolean[];
   public orders: Part[] = [];
   @Input()
@@ -35,22 +35,11 @@ export class PartOrdersComponent implements OnInit {
 
   this.userRepository.getUserType().subscribe(data => {
     console.log('data:', data);
-    this.type = data.type;
     if (data.type === 'garage') {
-      this.carRepository.showGarages().subscribe(res => {
-        console.log('cars in garage: ', res);
-        this.cars = res.vehicles;
-      });
+      this.garageUser = false;
     }
     if (data.type === 'customer') {
-      this.carRepository.showVehicle().subscribe(res => {
-        console.log('cars: ', res);
-        this.cars = res;
-        // this.cars = res;
-      });
-      this.partRepository.showPartsForUser().subscribe(data =>{
-        this.orders = data;
-      })
+      this.garageUser = true;
     }
   });
 
