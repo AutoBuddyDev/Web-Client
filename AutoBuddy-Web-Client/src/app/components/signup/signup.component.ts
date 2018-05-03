@@ -48,10 +48,10 @@ export class SignupComponent implements OnInit {
       favorite_garage: 0
     };
 
-    // this.userRepository.signup(user).subscribe(res => {
-    //   // console.log('res: ', res);
-    //   this.router.navigateByUrl('login');
-    // });
+    this.userRepository.signup(user).subscribe(res => {
+      // console.log('res: ', res);
+      this.router.navigateByUrl('login');
+    });
   }
 
   public submitSignupGarage() {
