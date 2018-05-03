@@ -69,7 +69,12 @@
   </div>
   <hr class="no-margin-top">
   <div class="row">
-    <div class="col-md-4 parent" *ngFor="let car of cars">
+    
+    <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
+    <button (click) = "addCarToGarage()">ADD CAR TO GARAGE</button>
+    <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
+
+    <div class="col-md-4" *ngFor="let car of cars">
       <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
       <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card car-card child">
         <div class="card-body">

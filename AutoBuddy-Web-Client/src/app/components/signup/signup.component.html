@@ -13,6 +13,7 @@
         </div>
         <br>
 
+
         <form name="signupform">
           <div *ngIf="accountType === undefined; else other_content">
           </div>
@@ -20,20 +21,18 @@
           <ng-template #other_content>
             <div *ngIf="accountType === 'Consumer'; else garage">
               <div class="form-group">
-                <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="full_name" #name="ngModel"
+                <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="full_name" #name1="ngModel"
                   placeholder="Name" required>
 
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name1.invalid && (name1.dirty || name1.touched)" class="alert alert-danger">
 
-                  <div *ngIf="name?.errors.required">
+                  <div *ngIf="name1?.errors.required">
                     Name is required.
                   </div>
-                  <div *ngIf="name?.errors.minlength">
+                  <div *ngIf="name1?.errors.minlength">
                     Name must be at least 4 characters long.
                   </div>
-                  <div *ngIf="name?.errors.forbiddenName">
-                    Name cannot be Bob.
-                  </div>
+
                 </div>
               </div>
 
@@ -71,13 +70,32 @@
               </div>
 
               <div class="form-group">
-                <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password1"
-                  required>
+                <input [(ngModel)]="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                pattern="[a-zA-Z0-9.-]{8,}"  name="password1"  required minlength="8" #PasswordModel="ngModel">
+                  <div *ngIf="PasswordModel.invalid && (PasswordModel.dirty || PasswordModel.touched)" class="alert alert-danger">
+                      <div *ngIf="PasswordModel?.errors.required"> Password is required. </div>
+                      <div *ngIf="PasswordModel?.errors.minlength; else other_error">
+                        Password must be at least 8 characters long.
+                      </div>
+                      <ng-template #other_error>
+                        Password must follow guidelines.
+                      </ng-template>
+                    </div>
               </div>
 
               <div class="form-group">
                 <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password"
-                  name="password2" required>
+                pattern="[a-zA-Z0-9.-]{8,}" name="password2" required  #ConfirmPasswordModel="ngModel">
+                <div *ngIf="(ConfirmPasswordModel.invalid || PasswordModel?.value != ConfirmPasswordModel?.value) && ( ConfirmPasswordModel.touched || ConfirmPasswordModel.dirty) "
+                  class="alert alert-danger">
+                  <div *ngIf="ConfirmPasswordModel?.errors.required"> Confirmed Password is required. </div>
+                  <div *ngIf="ConfirmPasswordModel?.errors.minlength; else other_error">
+                    Confimed Password must be at least 8 characters long.
+                  </div>
+                  <ng-template #other_error>
+                    Confirmed Password must be the same as password.
+                  </ng-template>
+                </div>
               </div>
 
             </div>
@@ -134,23 +152,34 @@
             </div>
 
             <div class="form-group">
-                <input id="password1" type="password" required minlength="8" name="password1" [(ngModel)]="password1" class="form-control" pattern="[a-zA-Z0-9.-]{8,}"
-                required #PasswordModel="ngModel" placeholder="Password" />
+              <input id="password1" type="password" required minlength="8" name="password1" [(ngModel)]="password1" class="form-control"
+                pattern="[a-zA-Z0-9.-]{8,}" required #PasswordModel="ngModel" placeholder="Password" />
 
               <div *ngIf="PasswordModel.invalid && (PasswordModel.dirty || PasswordModel.touched)" class="alert alert-danger">
                 <div *ngIf="PasswordModel?.errors.required"> Password is required. </div>
                 <div *ngIf="PasswordModel?.errors.minlength; else other_error">
-                    Password must be at least 8 characters long.
-                  </div>
+                  Password must be at least 8 characters long.
+                </div>
                 <ng-template #other_error>
-                   Password must follow guidelines.
+                  Password must follow guidelines.
                 </ng-template>
               </div>
             </div>
 
             <div class="form-group">
               <input [(ngModel)]="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Retype Password"
-                name="password2" required>
+              pattern="[a-zA-Z0-9.-]{8,}"  name="password2" #ConfirmPasswordModel="ngModel" >
+
+              <div *ngIf="(ConfirmPasswordModel.invalid || PasswordModel?.value != ConfirmPasswordModel?.value) && ( ConfirmPasswordModel.touched || ConfirmPasswordModel.dirty) "
+                class="alert alert-danger">
+                <div *ngIf="ConfirmPasswordModel?.errors.required"> Confirmed Password is required. </div>
+                <div *ngIf="ConfirmPasswordModel?.errors.minlength; else other_error">
+                  Confimed Password must be at least 8 characters long.
+                </div>
+                <ng-template #other_error>
+                  Confirmed Password must be the same as password.
+                </ng-template>
+              </div>
             </div>
           </ng-template>
 
