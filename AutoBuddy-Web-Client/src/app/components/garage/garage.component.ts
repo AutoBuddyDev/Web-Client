@@ -1,3 +1,4 @@
+import { AppointmentRepository } from './../../domain/appointment-repository';
 import { PartRepository } from "../../domain/part-repository";
 import { GarageRepository } from "./../../domain/garage-repository";
 import { UserRepository } from "../../domain/user-repository";
@@ -27,10 +28,13 @@ export class GarageComponent implements OnInit {
   public garage_id = 1;
   public user;
   public type: string;
-  public garageName: string;
+  public garageNameAppointment: string;
+  public garageIdAppointment: number;
+  public carAdded: Car;
   @Input() public cars: Car[];
 
   constructor(
+    private appointmentRepository: AppointmentRepository,
     private carRepository: CarRepository,
     private activedRoute: ActivatedRoute,
     private router: Router,
@@ -123,22 +127,49 @@ export class GarageComponent implements OnInit {
     })
   }
 
-  scheduleAppointment(garageName) {
+  scheduleAppointment(garageName, garageId) {
     console.log('garageName: ', garageName);
-    this.garageName = garageName;
+    console.log('garageId: ', garageId);
+    this.garageNameAppointment = garageName;
+    this.garageIdAppointment = garageId;
   }
 
   submitAppointment() {
     console.log('date: ', this.appointment);
+
+
     console.log('time: ', this.appointment_time);
+
     const dateTime = this.appointment + this.appointment_time;
+
     let hour = parseInt(this.appointment_time[0] + this.appointment_time[1]);
     if (hour > 12) {
       hour -= 12;
     }
 
-    const time = hour + this.appointment_time[2] + this.appointment_time[3] + this.appointment_time[4];
-    console.log('time: ', time)
+    const time = hour + this.appointment_time[2] + this.appointment_time[3] + this.appointment_time[4] + ':00';
+    const submitDate = this.appointment + ' ' + time;
+    console.log('submitDate: ', submitDate);
+    const appointment = {
+      garage_id: this.garageIdAppointment,
+      user_id: this.user.user_id,
+      timeslot_time: submitDate
+    };
+
+    console.log('garage_id: ', appointment.garage_id)
+
+    this.appointmentRepository.scheduleAppointment(appointment).subscribe(res => {
+      if (res === false) {
+        alert('That time is taken! Please select another.');
+      }  else {
+        console.log('res: ', res)
+        alert('Appointment created');
+      }
+    });
+  }
+
+  addCarToGarage(garageId) {
+
   }
 
   private deleteCar(car) {
