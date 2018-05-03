@@ -30,6 +30,7 @@ export class GarageComponent implements OnInit {
   public type: string;
   public garageNameAppointment: string;
   public garageIdAppointment: number;
+  public carAdded: Car;
   @Input() public cars: Car[];
 
   constructor(
@@ -156,6 +157,10 @@ export class GarageComponent implements OnInit {
         alert('Appointment created');
       }
     });
+  }
+
+  addCarToGarage(garageId) {
+
   }
 
   private deleteCar(car) {
