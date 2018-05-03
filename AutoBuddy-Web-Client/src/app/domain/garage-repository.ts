@@ -16,6 +16,13 @@ export class GarageRepository extends RepositoryService<Repair> {
     super(httpClient);
   }
 
+  public getGarages() {
+    const url = this.endPoint + '/showAllGarages';
+    return this.httpClient.get(url, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+
 
   // get garage by id
   public getGarageByUser(garageID: number): Observable<User> {
