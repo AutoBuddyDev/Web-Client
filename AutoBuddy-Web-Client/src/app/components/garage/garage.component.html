@@ -2,7 +2,7 @@
 <div *ngIf="type!=='garage'" class="container garage-container border dashboard mt-2 mb-2">
   <div class="row">
     <div class="col-md-4 parent" *ngFor="let garage of garages">
-      <div [routerLink]="'/garage/'+garage.id" class="card garage-card bg-color mt-2 mb-2 child">
+      <div class="card garage-card bg-color mt-2 mb-2 child">
         <div class="card-body">
           <div>
             <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close" aria-label="Close" style="color: red;"
@@ -104,7 +104,7 @@
   </div>
   <hr class="no-margin-top">
   <div class="row">
-    
+
     <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
     <button (click) = "addCarToGarage()">ADD CAR TO GARAGE</button>
     <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
