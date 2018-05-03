@@ -1,4 +1,3 @@
-import { MaterialModule } from '../../domain/material/material.module';
 import { PartRepository } from "../../domain/part-repository";
 import { GarageRepository } from "./../../domain/garage-repository";
 import { UserRepository } from "../../domain/user-repository";
@@ -9,12 +8,16 @@ import { Part } from "../../domain/models/part";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Car } from "../../domain/models/car";
 import { Garage } from '../../domain/models/garage';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @Component({
   selector: "app-garage",
   templateUrl: "./garage.component.html",
   styleUrls: ["./garage.component.css"]
 })
 export class GarageComponent implements OnInit {
+  public appointment: Date;
+  public appointment_time: string;
   public newCar: Car;
   public garages: Garage[];
   public myForm;
@@ -112,8 +115,21 @@ export class GarageComponent implements OnInit {
   }
 
   scheduleAppointment(garageName) {
-    console.log('garageName: ', garageName)
+    console.log('garageName: ', garageName);
     this.garageName = garageName;
+  }
+
+  submitAppointment() {
+    console.log('date: ', this.appointment);
+    console.log('time: ', this.appointment_time);
+    const dateTime = this.appointment + this.appointment_time;
+    let hour = parseInt(this.appointment_time[0] + this.appointment_time[1]);
+    if (hour > 12) {
+      hour -= 12;
+    }
+
+    const time = hour + this.appointment_time[2] + this.appointment_time[3] + this.appointment_time[4];
+    console.log('time: ', time)
   }
 
   private deleteCar(car) {

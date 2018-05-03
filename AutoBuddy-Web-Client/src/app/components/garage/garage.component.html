@@ -4,7 +4,8 @@
     <div class="col-md-4 parent" *ngFor="let garage of garages">
       <div [routerLink]="'/garage/'+garage.id" class="card garage-card bg-color mt-2 mb-2 child">
         <div class="card-body">
-          <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close" aria-label="Close" style="color: red;" (click)="scheduleAppointment(garage.garage_name)">
+          <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close" aria-label="Close" style="color: red;"
+            (click)="scheduleAppointment(garage.garage_name)">
             +
           </button>
           <h5 class="card-title">{{garage.garage_name}}</h5>
@@ -26,16 +27,25 @@
               </button>
             </div>
             <div class="modal-body">
-                <!-- <mat-form-field>
-                  </mat-form-field> -->
 
-                  <div class="example-events">
-                    <div *ngFor="let e of events">{{e}}</div>
-                  </div>
+              <div class="form-group row">
+                <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                <div class="col-10">
+                  <input [(ngModel)]="appointment" class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                <div class="col-10">
+                  <input [(ngModel)]="appointment_time" class="form-control" type="time" value="13:45:00" id="example-time-input">
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" (click)="submitAppointment()">Create Appointment</button>
             </div>
           </div>
         </div>
@@ -44,6 +54,7 @@
   </div>
 </div>
 
+<!-- Cars -->
 <div class="container border dashboard mt-2 mb-2">
   <div class="row">
     <div class="col-md-12">
@@ -56,9 +67,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4" *ngFor="let car of cars">
+    <div class="col-md-4 parent" *ngFor="let car of cars">
       <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
-      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card">
+      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card car-card child">
         <div class="card-body">
           <button type="button" class="close" aria-label="Close" style="color: red;" (click)="open($event, car)">
             <span aria-hidden="true">&times;</span>
