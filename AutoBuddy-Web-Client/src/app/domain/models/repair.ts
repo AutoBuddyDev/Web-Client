@@ -1,14 +1,14 @@
 
 export class Repair {
-  title?: string;
+  repair_title?: string;
   parts?: string[];
-  notes?: string;
-  x?: number;
-  y?: number;
-  id?: number;
+  repair_notes?: string;
+  repair_x_cord?: number;
+  repair_y_cord?: number;
+  repair_id?: number;
   vehicle_id?: number;
   cost?: number;
   completed?: boolean;
-  date?: Date;
-  repairStatus?: string;
+  repair_date?: string;
+  repair_status?: string;
 }

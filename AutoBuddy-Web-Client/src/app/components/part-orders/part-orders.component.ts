@@ -1,5 +1,7 @@
+import { GarageRepository } from './../../domain/garage-repository';
 import { Component, OnInit, Input } from '@angular/core';
 import { Part } from '../../domain/models/part'
+import { PartRepository } from '../../domain/part-repository';
 @Component({
   selector: 'app-part-orders',
   templateUrl: './part-orders.component.html',
@@ -11,21 +13,27 @@ export class PartOrdersComponent implements OnInit {
   public edit:boolean[];
   @Input()
   public parts: Part[];
-  constructor() { }
+  constructor(private partRepository: PartRepository,
+    private garageRepository: GarageRepository
+  ) { }
 
   ngOnInit() {
     this.newPart = {}
     this.id=0;
     this.edit=[];
+    this.partRepository.showParts().subscribe(data =>{
+      this.parts = data;
+    })
   }
 
   public addPart(){
-    this.id++;
-    this.newPart.part_id=this.id;
-    this.newPart.status='Ordered';
-    this.parts.push(this.newPart);
-    console.log(this.newPart)
-    this.newPart={}
+    this.newPart.part_status="Ordered";
+
+    this.partRepository.addPart(this.newPart).subscribe(res =>{
+      this.parts.push(this.newPart);
+      this.newPart={}
+    })
+
   }
 
   public changeStatus(partID:number,status:string){
@@ -35,8 +43,17 @@ export class PartOrdersComponent implements OnInit {
         currentId = x;
       }
     }
-    this.parts[currentId].status=status;
-    console.log(this.parts[currentId].status);
-    this.edit[currentId]=!this.edit[currentId];
+    const updatedInfo = {
+      part_id: partID,
+      part_status: status
+    }
+    this.partRepository.updatePartStatus(updatedInfo).subscribe(res => {
+      console.log("res: ",res);
+      this.parts[currentId].part_status=status;
+      console.log(this.parts[currentId].part_status);
+      this.edit[currentId]=!this.edit[currentId];
+    })
+
   }
+
 }

@@ -1,3 +1,4 @@
+import { PartRepository } from './domain/part-repository';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { CarRepository } from './domain/car-repository';
 import { RepositoryService } from './domain/repository.service';
 import { ComponentsModule } from './components/components.module';
 import { RepairRepository } from './domain/repair-repository';
+import { GarageRepository } from './domain/garage-repository';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { RepairRepository } from './domain/repair-repository';
   providers: [
     UserRepository,
     CarRepository,
-    RepairRepository
+    RepairRepository,
+    GarageRepository,
+    PartRepository
   ],
   bootstrap: [AppComponent]
 })

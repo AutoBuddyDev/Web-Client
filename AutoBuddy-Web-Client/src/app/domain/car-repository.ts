@@ -1,5 +1,5 @@
-import { Car } from './models/car';
 import { catchError } from 'rxjs/operators';
+import { Car } from './models/car';
 import { Observable } from 'rxjs';
 import { Injectable, Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -22,6 +22,13 @@ export class CarRepository extends RepositoryService<Car> {
     );
   }
 
+  public deleteCar(car: Car): Observable<Car> {
+    const url = this.endPoint + '/deleteVehicle' + '/' + car.vehicle_id;
+    return this.httpClient.put(url, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+
   public addPart(car: Car): Observable<Car> {
     const url = this.endPoint + '/addVehicle';
     console.log('car: ', car);
@@ -35,6 +42,25 @@ export class CarRepository extends RepositoryService<Car> {
     return this.httpClient.get(url, this.httpOptions).pipe(
       catchError(this.handleException)
     );
+  }
+  public showOneVehicle(vehicle_id:number): Observable<Car>{
+    const url = this.endPoint + '/showOneVehicle';
+    return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
+  public showRepairsForUser(vehicle_id:number): Observable<Car>{
+    const url = this.endPoint + '/showRepairsForUser';
+    return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
+  public showGarages(): Observable<any>{
+    const url = this.endPoint + '/showGarages';
+
+    return this.httpClient.get(url,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
   }
 
 }
