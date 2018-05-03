@@ -63,7 +63,6 @@ export class GarageComponent implements OnInit {
     this.isLoggedIn = true;
     this.carRepository.showVehicle().subscribe(res => {
       console.log('res: ', res[0]);
-      this.cars = res;
       // this.cars = res;
     });
   }
