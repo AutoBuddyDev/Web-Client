@@ -1,3 +1,4 @@
+import { MaterialModule } from './domain/material/material.module';
 import { PartRepository } from './domain/part-repository';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,12 +15,8 @@ import { RepositoryService } from './domain/repository.service';
 import { ComponentsModule } from './components/components.module';
 import { RepairRepository } from './domain/repair-repository';
 import { GarageRepository } from './domain/garage-repository';
-
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
@@ -27,7 +24,8 @@ import { GarageRepository } from './domain/garage-repository';
     ]),
     ComponentsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [
     UserRepository,
@@ -36,6 +34,7 @@ import { GarageRepository } from './domain/garage-repository';
     GarageRepository,
     PartRepository
   ],
+  exports: [MaterialModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
