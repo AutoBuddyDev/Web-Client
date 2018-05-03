@@ -1,7 +1,8 @@
+import { Part } from './part';
 
 export class Repair {
   repair_title?: string;
-  parts?: string[];
+  parts?: Part[];
   repair_notes?: string;
   repair_x_cord?: number;
   repair_y_cord?: number;

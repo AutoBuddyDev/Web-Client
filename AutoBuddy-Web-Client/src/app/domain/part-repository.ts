@@ -25,8 +25,8 @@ export class PartRepository extends RepositoryService<Part> {
     );
   }
 
-  public showParts(): Observable<Part[]>{
-    const url = this.endPoint + "/showParts";
+  public showPartsForUser(): Observable<Part[]>{
+    const url = this.endPoint + "/showPartsForUser";
 
     return this.httpClient
       .get(url,this.httpOptions)
@@ -38,6 +38,14 @@ export class PartRepository extends RepositoryService<Part> {
 
     return this.httpClient
       .put(url,part,this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
+
+  public attachRepair(partInfo:any):Observable<any>{
+    const url = this.endPoint + "/attachRepair";
+
+    return this.httpClient
+      .put(url,partInfo,this.httpOptions)
       .pipe(catchError(this.handleException));
   }
 

@@ -1,11 +1,13 @@
+import { Part } from './../../domain/models/part';
 import { GarageRepository } from './../../domain/garage-repository';
 import { CarRepository } from './../../domain/car-repository';
 import { Car } from "../../domain/models";
 import { trigger, style, animate, transition } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Repair } from "../../domain/models/repair";
+import { Repair } from '../../domain/models/repair';
 import { RepairRepository } from "../../domain/repair-repository";
 import { ActivatedRoute, Router } from "@angular/router";
+import { PartRepository } from '../../domain/part-repository';
 @Component({
   selector: "app-car-repairs",
   templateUrl: "./car-repairs.component.html",
@@ -31,7 +33,8 @@ export class CarRepairsComponent implements OnInit {
   public today: Date;
   public noteVisible: boolean[];
   public repaired: boolean;
-  public part: string;
+  public part: Part;
+  public parts:Part[];
   public id: number;
   public progress: number;
   public crosshair: boolean;
@@ -43,25 +46,29 @@ export class CarRepairsComponent implements OnInit {
   constructor(
     private repairRepository: RepairRepository,
     private activedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private partRepository:PartRepository
 
   ) {}
 
   ngOnInit() {
+    this.newRepair = new Repair;
+    this.newRepair.parts=[];
     this.crosshairCursor = false;
     this.crosshair = false;
     this.id = 0;
-    this.part = "";
-    this.newRepair = {
-      parts: []
-    };
+    this.part = new Part;
     this.repaired = true;
     this.noteVisible = [];
     this.progress = 0;
+    this.partRepository.showPartsForUser().subscribe(data => {
+      this.parts = data;
+    })
   }
   addPart() {
+    console.log(this.part);
     this.newRepair.parts.push(this.part);
-    this.part = "";
+    this.part = new Part;
   }
   public addRepair() {
     this.today = new Date();
@@ -94,7 +101,17 @@ export class CarRepairsComponent implements OnInit {
 
     // API call
     this.repairRepository.addRepair(this.newRepair).subscribe(res => {
-      console.log("res: ", res);
+      console.log("thisrepair: ", res);
+      this.repairRepository.getMostRecentRepair().subscribe(data =>{
+        const partInfo= {
+          "repair_id": data.results[0].repair_id,
+          "part_id": this.newRepair.parts[0].part_id
+        }
+        this.partRepository.attachRepair(partInfo).subscribe(res => {
+          console.log("attached Part to repair", res);
+          console.log(partInfo);
+        })
+      })
 
 
       // Resetting info
@@ -103,10 +120,7 @@ export class CarRepairsComponent implements OnInit {
         100 *
         this.completeRepairs.length /
         (this.completeRepairs.length + this.inProgressRepairs.length);
-      this.newRepair = {
-        parts: []
-      };
-      this.part = "";
+      this.part = new Part;
       // this.router.navigateByUrl
     });
     // End of api call

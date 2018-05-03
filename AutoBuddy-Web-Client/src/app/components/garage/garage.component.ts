@@ -87,15 +87,16 @@ export class GarageComponent implements OnInit {
           this.cars = res;
           // this.cars = res;
         });
+        this.partRepository.showPartsForUser().subscribe(data =>{
+          this.orders = data;
+        })
       }
     })
     this.userRepository.getUserInfo().subscribe(user=>{
       console.log('user:', user[0]);
       this.user = user[0];
     })
-    this.partRepository.showParts().subscribe(data =>{
-      this.orders = data;
-    })
+
   }
 
   public open(e, car){

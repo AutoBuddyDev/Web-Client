@@ -37,16 +37,25 @@
 
 
           <!-- Parts -->
+          <pre>{{part |json}}</pre>
           <div class="input-group ml-1 mb-2 mr-sm-2 mt-2 row">
-              <input type="text" class="form-control col-md-8" id="part"
-              name="part" [(ngModel)]="part" placeholder="Part ex: spring">
+            <!-- selecting from list of available parst -->
+              <!-- <input type="text" class="form-control col-md-8" id="part"
+              name="part" [(ngModel)]="part" placeholder="Part ex: spring"> -->
+                <label for = "part">Part: </label>
+              <select name="part" [(ngModel)] = "part">
+                <option *ngFor = "let optionPart of parts"  [ngValue]="optionPart">
+                  {{optionPart.part_name}}
+                </option>
+              </select>
+
             <div class="input-group-prepend">
               <button type="submit" class="input-group-text btn btn-primary"
               (click)="addPart()" >+</button>
             </div>
           </div>
           <div *ngFor="let part of newRepair.parts">
-                <span class="form-control d-block p-2 part-color part text-dark col-md-8 ml-1">{{part}}</span>
+                <span class="form-control d-block p-2 part-color part text-dark col-md-8 ml-1">{{part.part_name}}</span>
           </div>
 
           <!-- Notes -->

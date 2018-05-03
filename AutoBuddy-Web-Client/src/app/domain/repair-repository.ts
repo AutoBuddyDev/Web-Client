@@ -15,7 +15,13 @@ export class RepairRepository extends RepositoryService<Repair> {
   }
 
   // Get repairs for car
+  public getMostRecentRepair(): Observable<any>{
+    const url = this.endPoint + "/lengthTable";
 
+    return this.httpClient
+      .get(url,this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
   public getRepairs(): Observable<Repair> {
     return this.httpClient
       .get(`${this.endPoint}/showRepairs`, this.httpOptions)

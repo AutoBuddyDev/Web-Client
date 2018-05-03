@@ -12,16 +12,20 @@ export class PartOrdersComponent implements OnInit {
   public id:number;
   public edit:boolean[];
   @Input()
+  public userType:string;
+  @Input()
   public parts: Part[];
   constructor(private partRepository: PartRepository,
-    private garageRepository: GarageRepository
+    private garageRepository: GarageRepository,
   ) { }
 
   ngOnInit() {
     this.newPart = {}
     this.id=0;
     this.edit=[];
-    this.partRepository.showParts().subscribe(data =>{
+
+    this.partRepository.showPartsForUser().subscribe(data =>{
+      console.log("parts ",data )
       this.parts = data;
     })
   }
@@ -48,9 +52,7 @@ export class PartOrdersComponent implements OnInit {
       part_status: status
     }
     this.partRepository.updatePartStatus(updatedInfo).subscribe(res => {
-      console.log("res: ",res);
       this.parts[currentId].part_status=status;
-      console.log(this.parts[currentId].part_status);
       this.edit[currentId]=!this.edit[currentId];
     })
 

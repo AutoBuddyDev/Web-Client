@@ -1,3 +1,4 @@
+import { Part } from './../../domain/models/part';
 import { GarageRepository } from './../../domain/garage-repository';
 import { ActivatedRoute } from '@angular/router';
 import { Repair } from './../../domain/models/repair';
@@ -28,6 +29,7 @@ export class CarDetailsComponent implements OnInit {
   public garageName: String;
   public favorited:boolean;
   public repairs: any;
+  public parts: Part[];
   public inProgressRepairs =[];
   public completedRepairs = [];
   public user;
@@ -52,6 +54,7 @@ export class CarDetailsComponent implements OnInit {
 
       });
     });
+
     this.userRepository.getUserInfo().subscribe(user=>{
       this.user=user[0]
       if(this.user.favorite_garage){
