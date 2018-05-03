@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { RepositoryService } from "./repository.service";
 
 @Injectable()
-export class GarageRepository extends RepositoryService<Repair> {
+export class PartRepository extends RepositoryService<Part> {
   protected endPoint = "http://ec2-18-221-98-201.us-east-2.compute.amazonaws.com:3000";
 
   constructor(protected httpClient: HttpClient) {
@@ -18,28 +18,27 @@ export class GarageRepository extends RepositoryService<Repair> {
 
 
   // get garage by id
-  public getGarageByUser(garageID: number): Observable<User> {
-    const url = this.endPoint + "/showGarageForUser";
+  public addPart(part: Part): Observable<Part>{
+    const url = this.endPoint + '/addPart';
+    return this.httpClient.post(url, part, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+
+  public showParts(): Observable<Part[]>{
+    const url = this.endPoint + "/showParts";
 
     return this.httpClient
-      .get(`${url}/${garageID}`, this.httpOptions)
+      .get(url,this.httpOptions)
       .pipe(catchError(this.handleException));
   }
 
-  public favoriteGarage(garageID: number): Observable<User> {
-    const url = this.endPoint + "/favorite";
-    console.log(garageID);
-    return this.httpClient
-      .put(url, garageID, this.httpOptions)
-      .pipe(catchError(this.handleException));
-  }
-  public unfavoriteGarage(garageID: number): Observable<User> {
-    const url = this.endPoint + "/unfavorite";
+  public updatePartStatus(part:any): Observable<Part>{
+    const url = this.endPoint + "/updatePartStatus";
 
     return this.httpClient
-      .put(url, garageID, this.httpOptions)
+      .put(url,part,this.httpOptions)
       .pipe(catchError(this.handleException));
   }
-
 
 }

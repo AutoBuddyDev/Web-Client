@@ -1,9 +1,10 @@
 export class Part {
-  name?:string;
-  customer?:string;
+  vehicle_make_model?:string;
+  part_name?:string;
+  customer?:number;
   part_id?:number;
-  serial_number?:number;
+  part_serial_number?:number;
   garage_id?:number;
-  status?:string;
+  part_status?:string;
 
 }

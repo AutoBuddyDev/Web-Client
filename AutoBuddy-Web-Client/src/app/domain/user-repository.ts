@@ -14,8 +14,22 @@ export class UserRepository extends RepositoryService<User> {
     super(httpClient);
   }
 
-  public login(user: User): Observable<User> {
+  public getUserType(): Observable<any> {
+    const url = this.endPoint + '/getUserType';
+
+    return this.httpClient.get(url,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
+  public login(user: any): Observable<any> {
     const url = this.endPoint + '/login';
+    console.log('user: ', user);
+    return this.httpClient.post(url, user, this.httpOptions).pipe(
+      catchError(this.handleException)
+    );
+  }
+  public loginAsGarage(user: any): Observable<any> {
+    const url = this.endPoint + '/loginAsGarage';
     console.log('user: ', user);
     return this.httpClient.post(url, user, this.httpOptions).pipe(
       catchError(this.handleException)

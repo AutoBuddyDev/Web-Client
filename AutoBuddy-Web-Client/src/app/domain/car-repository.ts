@@ -1,5 +1,5 @@
-import { Car } from './models/car';
 import { catchError } from 'rxjs/operators';
+import { Car } from './models/car';
 import { Observable } from 'rxjs';
 import { Injectable, Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -52,6 +52,13 @@ export class CarRepository extends RepositoryService<Car> {
   public showRepairsForUser(vehicle_id:number): Observable<Car>{
     const url = this.endPoint + '/showRepairsForUser';
     return this.httpClient.get(`${url}/${vehicle_id}`,this.httpOptions).pipe(
+      catchError(this.handleException)
+    )
+  }
+  public showGarages(): Observable<any>{
+    const url = this.endPoint + '/showGarages';
+
+    return this.httpClient.get(url,this.httpOptions).pipe(
       catchError(this.handleException)
     )
   }

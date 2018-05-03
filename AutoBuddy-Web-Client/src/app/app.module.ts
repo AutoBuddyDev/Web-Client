@@ -1,3 +1,4 @@
+import { PartRepository } from './domain/part-repository';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ import { GarageRepository } from './domain/garage-repository';
     CarRepository,
     RepairRepository,
     GarageRepository,
+    PartRepository
   ],
   bootstrap: [AppComponent]
 })

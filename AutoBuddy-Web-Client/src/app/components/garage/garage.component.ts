@@ -1,3 +1,5 @@
+import { PartRepository } from '../../domain/part-repository';
+import { GarageRepository } from './../../domain/garage-repository';
 import { UserRepository } from '../../domain/user-repository';
 import { Garage } from './../../domain/models/garage';
 import { CarRepository } from "./../../domain/car-repository";
@@ -26,7 +28,9 @@ export class GarageComponent implements OnInit {
     private carRepository: CarRepository,
     private activedRoute: ActivatedRoute,
     private router: Router,
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private garageRepository: GarageRepository,
+    private partRepository: PartRepository
   ) {}
 
   private addCar() {
@@ -53,10 +57,6 @@ export class GarageComponent implements OnInit {
         this.carRepository.showVehicle().subscribe(res => {
           console.log('res: ', res);
           this.cars = res;
-          for( let x = 0;x<res.length;x++){
-            this.cars[x].position=x;
-          }
-          console.log(this.cars)
           // this.cars = res;
         });
         this.userRepository.getUserInfo().subscribe(user=>{
@@ -71,19 +71,30 @@ export class GarageComponent implements OnInit {
     this.newCar= new Car();
     this.showBg = false;
     this.isLoggedIn = true;
-    this.carRepository.showVehicle().subscribe(res => {
-      console.log('res: ', res);
-      this.cars = res;
-      for( let x = 0;x<res.length;x++){
-        this.cars[x].position=x;
+
+    this.userRepository.getUserType().subscribe(data =>{
+      console.log('data:', data);
+      if(data.type=="garage"){
+        this.carRepository.showGarages().subscribe(data => {
+          console.log("cars in garage: ", data);
+          this.cars = data.vehicles;
+
+        })
       }
-      console.log(this.cars)
-      // this.cars = res;
-    });
+      if(data.type=="customer"){
+        this.carRepository.showVehicle().subscribe(res => {
+          console.log('cars: ', res);
+          this.cars = res;
+          // this.cars = res;
+        });
+      }
+    })
     this.userRepository.getUserInfo().subscribe(user=>{
       console.log('user:', user[0]);
       this.user = user[0];
-
+    })
+    this.partRepository.showParts().subscribe(data =>{
+      this.orders = data;
     })
   }
 
@@ -95,11 +106,9 @@ export class GarageComponent implements OnInit {
   private deleteCar(car) {
     this.carRepository.deleteCar(car).subscribe(res => {
       this.carRepository.showVehicle().subscribe(res => {
-        console.log('res: ', res);
+        console.log('carsAfterDelete: ', res);
         this.cars = res;
-        for( let x = 0;x<res.length;x++){
-          this.cars[x].position=x;
-        }
+
         console.log(this.cars)
         // this.cars = res;
       });

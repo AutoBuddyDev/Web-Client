@@ -1,4 +1,5 @@
 <!-- MODAL -->
+<pre>{{newPart | json}} </pre>
 <div class="modal fade" id="addPart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -16,18 +17,24 @@
           <!-- Name of Part -->
           <div class="ml-1 mb-2 row">
               <input type="text" class="form-control d-block col-md-8" id="name"
-              name="name" [(ngModel)]="newPart.name" placeholder="Part Name">
+              name="name" [(ngModel)]="newPart.part_name" placeholder="Part Name">
           </div>
+          <!-- vehicle make model -->
+          <div class="ml-1 mb-2 row">
+            <input type="text" class="form-control d-block col-md-8" id="makeModel"
+            name="makeModel" [(ngModel)]="newPart.vehicle_make_model" placeholder="Make/Model">
+          </div>
+
 
           <!-- Serial Number -->
           <div class="ml-1 mb-2 row">
-              <input type="text" class="form-control col-md-8" id="serialNumber"
-              name="serialNumber" [(ngModel)]="newPart.serial_number" placeholder="Enter Serial Number">
+              <input type="number" class="form-control col-md-8" id="serialNumber"
+              name="serialNumber" [(ngModel)]="newPart.part_serial_number" placeholder="Enter Serial Number">
           </div>
          <!-- Customer Name -->
          <div class="ml-1 mb-2 row">
-              <input type="text" class="form-control d-block col-md-8" id="customer"
-              name="customer" [(ngModel)]="newPart.customer" placeholder="Customer Name">
+              <input type="number" class="form-control d-block col-md-8" id="customer"
+              name="customer" [(ngModel)]="newPart.customer" placeholder="Customer ID">
           </div>
 
           <!-- status -->
@@ -39,11 +46,8 @@
             </select>
           </div> -->
           <!-- Garage ID -->
-          <div class="ml-1 mb-2 row">
-              <input type="text" class="form-control d-block col-md-8" id="garageID"
-              name="garage_id" [(ngModel)]="newPart.garage_id" placeholder="Garage ID">
-          </div>
-        
+
+
         </form>
       </div>
       <div class="modal-footer">
@@ -68,27 +72,27 @@
         <thead>
           <tr>
             <th scope="col">Part Name</th>
-            <th scope="col">Part ID</th>
+            <th scope="col">Vehicle Make/Model</th>
+            <th scope="col">Customer ID</th>
             <th scope="col">Serial Number</th>
-            <th scope="col">Customer Name</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let part of parts; let i =index">
-            <th scope="row"><img (click)="edit[i]=!edit[i]"src="assets/images/editImage.png"/> {{part.name}}</th>
-            <td>{{part.part_id}}</td>
-            <td>{{part.serial_number}}</td>
+            <th scope="row"><img (click)="edit[i]=!edit[i]"src="assets/images/editImage.png"/> {{part.part_name}}</th>
+            <td>{{part.vehicle_make_model}}</td>
             <td>{{part.customer}}</td>
+            <td>{{part.part_serial_number}}</td>
             <td *ngIf="edit[i]">
-              <select (change)="changeStatus(part.part_id,$event.target.value)"[(ngModel)]="newPart.status">
+              <select (change)="changeStatus(part.part_id,$event.target.value)"[(ngModel)]="newPart.part_status">
                 <option></option>
                 <option (value) = "status"*ngFor="let status of ['Ordered','Delivering','In Inventory']">
                   {{status}}
                 </option>
               </select>
             </td>
-            <td *ngIf="!edit[i]">{{part.status}}</td>
+            <td *ngIf="!edit[i]">{{part.part_status}}</td>
           </tr>
         </tbody>
       </table>

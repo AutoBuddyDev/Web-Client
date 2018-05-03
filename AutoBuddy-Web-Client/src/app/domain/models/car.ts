@@ -16,5 +16,4 @@ export class Car {
   checkInDate?: number;
   vehicle_id?: number;
   progress?: number;
-  position?:number;
 }
