@@ -1,3 +1,4 @@
+import { AppointmentRepository } from './../../domain/appointment-repository';
 import { PartRepository } from "../../domain/part-repository";
 import { GarageRepository } from "./../../domain/garage-repository";
 import { UserRepository } from "../../domain/user-repository";
@@ -27,10 +28,14 @@ export class GarageComponent implements OnInit {
   public garage_id = 1;
   public user;
   public type: string;
-  public garageName: string;
+  public garageNameAppointment: string;
+  public garageIdAppointment: number;
+  public carAdded: Car;
+  private garageId: number;
   @Input() public cars: Car[];
 
   constructor(
+    private appointmentRepository: AppointmentRepository,
     private carRepository: CarRepository,
     private activedRoute: ActivatedRoute,
     private router: Router,
@@ -93,9 +98,9 @@ export class GarageComponent implements OnInit {
           this.cars = res;
           // this.cars = res;
         });
-        this.partRepository.showPartsForUser().subscribe(data =>{
-          this.orders = data;
-        })
+        this.partRepository.showPartsForUser().subscribe(parts => {
+          this.orders = parts;
+        });
       }
     });
     this.userRepository.getUserInfo().subscribe(user => {
@@ -112,33 +117,76 @@ export class GarageComponent implements OnInit {
     e.stopPropagation();
     this.deleteCar(car);
   }
-  public addCarToGarage(){
-    let object = {
-      "garage_id": "enter garage id",
-      "vehicle_id":"enter vehicle id"
-    }
-    this.carRepository.addCarToGarage(object).subscribe(data => {
-      console.log("data: ",data);
+  public addCarToGarage() {
+    console.log('garageId: ', this.garageId);
+    console.log('this.carAdded: ', this.carAdded);
+    const object = {
+      'garage_id': this.garageId,
+      'vehicle_id': this.carAdded.vehicle_id
+    };
 
-    })
+    this.carRepository.addCarToGarage(object).subscribe(data => {
+      console.log("data: ", data);
+    });
   }
 
-  scheduleAppointment(garageName) {
+  scheduleAppointment(garageName, garageId) {
     console.log('garageName: ', garageName);
-    this.garageName = garageName;
+    console.log('garageId: ', garageId);
+    this.garageNameAppointment = garageName;
+    this.garageIdAppointment = garageId;
+  }
+
+  setNewCar(carMake) {
+    let car = {};
+
+    // Find the corresponding car object
+    this.cars.forEach(carObj => {
+      if (carObj.vehicle_make === carMake) {
+        this.carAdded = carObj;
+      }
+    });
+
+    console.log('car selected: ', this.carAdded);
   }
 
   submitAppointment() {
     console.log('date: ', this.appointment);
+
+
     console.log('time: ', this.appointment_time);
+
     const dateTime = this.appointment + this.appointment_time;
+
     let hour = parseInt(this.appointment_time[0] + this.appointment_time[1]);
     if (hour > 12) {
       hour -= 12;
     }
 
-    const time = hour + this.appointment_time[2] + this.appointment_time[3] + this.appointment_time[4];
-    console.log('time: ', time)
+    const time = hour + this.appointment_time[2] + this.appointment_time[3] + this.appointment_time[4] + ':00';
+    const submitDate = this.appointment + ' ' + time;
+    console.log('submitDate: ', submitDate);
+    const appointment = {
+      garage_id: this.garageIdAppointment,
+      user_id: this.user.user_id,
+      timeslot_time: submitDate
+    };
+
+    console.log('garage_id: ', appointment.garage_id)
+
+    this.appointmentRepository.scheduleAppointment(appointment).subscribe(res => {
+      if (res.status === 0) {
+        alert('That time is taken! Please select another.');
+      }  else {
+        console.log('res: ', res);
+        alert('See you then!');
+      }
+    });
+  }
+
+  garageSelected(garageId) {
+    console.log('garageId: ', garageId)
+    this.garageId = garageId;
   }
 
   private deleteCar(car) {

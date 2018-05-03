@@ -2,12 +2,21 @@
 <div *ngIf="type!=='garage'" class="container garage-container border dashboard mt-2 mb-2">
   <div class="row">
     <div class="col-md-4 parent" *ngFor="let garage of garages">
-      <div [routerLink]="'/garage/'+garage.id" class="card garage-card bg-color mt-2 mb-2 child">
+      <div class="card garage-card bg-color mt-2 mb-2 child">
         <div class="card-body">
-          <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close" aria-label="Close" style="color: red;"
-            (click)="scheduleAppointment(garage.garage_name)">
-            +
-          </button>
+          <div>
+            <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close mr-2" aria-label="Close" style="color: red;"
+              (click)="scheduleAppointment(garage.garage_name, garage.garage_id)">
+              +
+            </button>
+            <button type="button" data-toggle="modal" data-target="#carModal" class="close" aria-label="Close" style="color: green;"
+            (click)="garageSelected(garage.garage_id)"
+              >
+              +
+            </button>
+
+          </div>
+
           <h5 class="card-title">{{garage.garage_name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Located at {{garage.garage_location}}</h6>
           <h6 class="card-subtitle mb-2 text-muted text-truncate">
@@ -50,6 +59,35 @@
           </div>
         </div>
       </div>
+
+      <!-- Car Modal -->
+      <div class="modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="carModalLabel">{{garageName}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="car-select">
+                  Select a car
+                </label>
+                  <select #selectElem
+                  id="car-select" (change)="setNewCar(selectElem.value)"
+                  *ngIf="cars?.length > 0">
+                      <option  *ngFor="let car of cars">{{car.vehicle_make}}</option>
+                      </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addCarToGarage(garage.garage_id)">Add Car</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>
 </div>
@@ -69,14 +107,14 @@
   </div>
   <hr class="no-margin-top">
   <div class="row">
-    
+
     <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
-    <button (click) = "addCarToGarage()">ADD CAR TO GARAGE</button>
+    <!-- <button (click) = "addCarToGarage()">ADD CAR TO GARAGE</button> -->
     <!-- ADD CAR TO GARAGE FUNCTION IS HERE -->
 
     <div class="col-md-4" *ngFor="let car of cars">
       <!-- <a class="no-decoration" routerLink="/garage/{{ car.id }}"> -->
-      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card car-card child">
+      <div [routerLink]="'/car/'+car.vehicle_id" class="card garage-card car-card child mt-3">
         <div class="card-body">
           <button type="button" class="close" aria-label="Close" style="color: red;" (click)="open($event, car)">
             <span aria-hidden="true">&times;</span>

@@ -69,7 +69,7 @@
         Order Part
       </button>
       <h1 *ngIf="!parts.length"> You have no parts ordered</h1>
-      <table *ngIf="parts.length"class="table" id="ordersTable">
+      <table *ngIf="parts.length > 0"class="table" id="ordersTable">
         <thead>
           <tr>
             <th scope="col">Part Name</th>
