@@ -1,3 +1,4 @@
+import { AppointmentRepository } from './domain/appointment-repository';
 import { MaterialModule } from './domain/material/material.module';
 import { PartRepository } from './domain/part-repository';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +33,8 @@ import { GarageRepository } from './domain/garage-repository';
     CarRepository,
     RepairRepository,
     GarageRepository,
-    PartRepository
+    PartRepository,
+    AppointmentRepository
   ],
   exports: [MaterialModule],
   bootstrap: [AppComponent]

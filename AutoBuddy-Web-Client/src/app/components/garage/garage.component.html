@@ -5,7 +5,7 @@
       <div [routerLink]="'/garage/'+garage.id" class="card garage-card bg-color mt-2 mb-2 child">
         <div class="card-body">
           <button type="button" data-toggle="modal" data-target="#scheduleModal" class="close" aria-label="Close" style="color: red;"
-            (click)="scheduleAppointment(garage.garage_name)">
+            (click)="scheduleAppointment(garage.garage_name, garage.garage_id)">
             +
           </button>
           <h5 class="card-title">{{garage.garage_name}}</h5>
